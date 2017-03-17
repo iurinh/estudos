@@ -12,22 +12,16 @@ class NegociacaoController {
 	adiciona(event){
 		event.preventDefault();
 
-		//Possivel solução PESSOAL
-		let dates = this._inputData.value.split('-');
-		dates.forEach(function(dt){
-			dt = Number(dt);
-		});
-
-		// let data = new Date(this._inputData.value.split('-'));//ano-mes-dia
-		let data = new Date(dates);//ano-mes-dia
+		//...this._inputData.value.split('-')//spread operator (pega o array e distribui em cada posição dos parametros do construtor)
+		let data = new Date(...
+			this._inputData.value
+			.split('-')
+			.map(function(item,index){
+				return item - index % 2;//Ajuste realizado somente no mes (posicao 1)
+			})
+		);//spread operator (pega o array e distribui em cada posição dos parametros do construtor)
 		console.log(data);
-		// let negociacao = new Negociacao(
-		// 	this._inputData.value,
-		// 	this._inputQuantidade.value,
-		// 	this._inputValor.value
-		// );
-
-		// console.log(negociacao);
+		
 	}
 
 
