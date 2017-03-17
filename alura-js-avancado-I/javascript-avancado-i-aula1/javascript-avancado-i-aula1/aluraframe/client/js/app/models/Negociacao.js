@@ -2,7 +2,7 @@ class Negociacao {
 
 	constructor(data, quantidade, valor){
 		//Underline - indica ao programador q esses atributos somente podem ser acessados pela propria classe
-		this._data = data;
+		this._data = new Date(data.getTime());
 		this._quantidade = quantidade;
 		this._valor = valor;
 
@@ -14,7 +14,7 @@ class Negociacao {
 	}
 
 	get data(){
-		return this._data;
+		return new Date(this._data.getTime());
 	}
 
 	get quantidade(){
