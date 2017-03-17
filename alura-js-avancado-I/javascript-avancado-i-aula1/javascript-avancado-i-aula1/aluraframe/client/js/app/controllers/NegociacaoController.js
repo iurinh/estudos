@@ -11,11 +11,11 @@ class NegociacaoController {
 
 	adiciona(event){
 		event.preventDefault();
-
-		let data = new Date(...
-			this._inputData.value
-			.split('-')
-			.map((item,index) => item - index % 2 )//arrow function, nao precisa de corpo e ele ja entende que sara um return
+		console.log(this._inputData.value.split('-').reverse().join('/'));
+		let data = new Date(
+			...this._inputData.value
+				.split('-')
+				.map((item,index) => item - index % 2 )//arrow function, nao precisa de corpo e ele ja entende que sara um return
 		);
 		
 		let negociacao = new Negociacao(
