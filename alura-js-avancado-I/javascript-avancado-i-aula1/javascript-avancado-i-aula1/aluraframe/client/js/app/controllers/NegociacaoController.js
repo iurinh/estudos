@@ -12,16 +12,19 @@ class NegociacaoController {
 	adiciona(event){
 		event.preventDefault();
 
-		//...this._inputData.value.split('-')//spread operator (pega o array e distribui em cada posição dos parametros do construtor)
 		let data = new Date(...
 			this._inputData.value
 			.split('-')
-			.map(function(item,index){
-				return item - index % 2;//Ajuste realizado somente no mes (posicao 1)
-			})
-		);//spread operator (pega o array e distribui em cada posição dos parametros do construtor)
-		console.log(data);
+			.map((item,index) => item - index % 2 )//arrow function, nao precisa de corpo e ele ja entende que sara um return
+		);
 		
+		let negociacao = new Negociacao(
+			data,
+			this._inputQuantidade.value,
+			this._inputValor.value
+		);
+		
+		console.log(negociacao);
 	}
 
 
