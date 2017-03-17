@@ -62,10 +62,11 @@
 
     <script>
         var n1 = new Negociacao(new Date(), 5, 700);
-        console.log(n1.getData());
-        console.log(n1.getQuantidade());
-        console.log(n1.getValor());
-        console.log(n1.getVolume());
+        n1.quantidade = 1000;//ISso nao altera o valor, pq tenta chamar um metodo. Somente se usar o underline (_quantidade) eh q muda o valor. Por convencao nao se muda
+        console.log(n1.data);
+        console.log(n1.quantidade);
+        console.log(n1.valor);
+        console.log(n1.volume);
     </script>
 </body>
 </html>
