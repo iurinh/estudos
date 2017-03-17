@@ -12,8 +12,14 @@ class NegociacaoController {
 	adiciona(event){
 		event.preventDefault();
 
+		//Possivel solução PESSOAL
+		let dates = this._inputData.value.split('-');
+		dates.forEach(function(dt){
+			dt = Number(dt);
+		});
+
 		// let data = new Date(this._inputData.value.split('-'));//ano-mes-dia
-		let data = new Date(this._inputData.value.replace(/-/g,','));//ano-mes-dia
+		let data = new Date(dates);//ano-mes-dia
 		console.log(data);
 		// let negociacao = new Negociacao(
 		// 	this._inputData.value,
