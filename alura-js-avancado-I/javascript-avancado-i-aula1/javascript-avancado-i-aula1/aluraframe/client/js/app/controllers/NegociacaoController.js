@@ -11,22 +11,17 @@ class NegociacaoController {
 
 	adiciona(event){
 		event.preventDefault();
-		console.log(this._inputData.value.split('-').reverse().join('/'));
-		let data = new Date(
-			...this._inputData.value
-				.split('-')
-				.map((item,index) => item - index % 2 )//arrow function, nao precisa de corpo e ele ja entende que sara um return
-		);
 		
+		let dataHelper = new DateHelper();
 		let negociacao = new Negociacao(
-			data,
+			DateHelper.textoParaData(this._inputData.value),
 			this._inputQuantidade.value,
 			this._inputValor.value
 		);
 		
-		console.log(negociacao);
+		let diamesAno = DateHelper.dataParaTexto(negociacao.data);
+
+		console.log(diamesAno);
 	}
-
-
 
 }
