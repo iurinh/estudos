@@ -6,6 +6,9 @@ class DateHelper {
 	}
 
 	static textoParaData(texto){
+		if(! /\d{4}-\d{2}-\d{2}/.test(texto))
+			throw new Error('Texto de data deve estar no formato aaaa-mm-dd');
+
 		return new Date(
 			...texto
 				.split('-')
@@ -14,9 +17,8 @@ class DateHelper {
 	}
 
 	static dataParaTexto(data){
-		return 	data.getDate() + "/" + 
-				(data.getMonth() + 1) + "/" + 
-				data.getFullYear();
+		//Template String (coisa nova do ES2015)
+		return 	`${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`;
 	}
 
 }
