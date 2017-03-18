@@ -8,6 +8,7 @@ class ListaNegociacoes{
 	}
 
 	get negociacoes(){
-		return this._negociacoes;
+		//Utiliza uma nova lista com uma copia dos dados da lista (acaba blindando);
+		return [].concat(this._negociacoes);
 	}
 }

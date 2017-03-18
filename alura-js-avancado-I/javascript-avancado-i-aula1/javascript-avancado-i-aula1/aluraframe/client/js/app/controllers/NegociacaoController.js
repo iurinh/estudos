@@ -15,9 +15,6 @@ class NegociacaoController {
 			
 		this._listaNegociacoes.adiciona(this._criaNegociacao());
 		this._limpaFormulario();
-
-
-		console.log(this._listaNegociacoes.negociacoes);
 	}
 
 	//Possui underline pq indica q somente quem faz parte desse controller eh q pode chamar essa funcao
