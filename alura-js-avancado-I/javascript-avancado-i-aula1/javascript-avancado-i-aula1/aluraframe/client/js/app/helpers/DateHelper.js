@@ -6,7 +6,7 @@ class DateHelper {
 	}
 
 	static textoParaData(texto){
-		if(! /\d{4}-\d{2}-\d{2}/.test(texto))
+		if(! /^\d{4}-\d{2}-\d{2}$/.test(texto))
 			throw new Error('Texto de data deve estar no formato aaaa-mm-dd');
 
 		return new Date(
@@ -17,7 +17,7 @@ class DateHelper {
 	}
 
 	static dataParaTexto(data){
-		//Template String (coisa nova do ES2015)
+		//Template String (coisa nova do ES2015) - essa crase se chama "back stick"
 		return 	`${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`;
 	}
 
