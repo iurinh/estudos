@@ -1,7 +1,7 @@
 class NegociacaoService {
 	obterNegociacoesDaSemana(cb){//callback
 		let xhr = new XMLHttpRequest();//AJAX usando apenas JS
-        xhr.open('GET','negociacoes/xsemana');//Prepara para abrir o endereco
+        xhr.open('GET','negociacoes/semana');//Prepara para abrir o endereco
         
         /*
             0: requisicao ainda nao iniciada
@@ -18,7 +18,7 @@ class NegociacaoService {
                         
                 }else{
                     console.log(xhr.responseText);
-                    cb('Não foi possível obter as negociações');
+                    cb('Não foi possível obter as negociações', null);
                 }
         };
 
