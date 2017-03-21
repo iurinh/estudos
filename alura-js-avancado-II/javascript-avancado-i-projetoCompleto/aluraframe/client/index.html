@@ -60,13 +60,13 @@
 
     <script>
         let negProxy = new Proxy(new Negociacao(new Date(),1,100), {
-            get: function(target, prop, receiver){//Aramadilha / Trap
-                console.log(`A propriedade '${prop}' foi interceptada`);
-                return Reflect.get(target, prop, receiver);
+            set: function(target, prop, value, receiver){
+                console.log(`Valor anterior: ${target[prop]}, Novo valor: ${value}`);
+                return Reflect.set(target, prop, value, receiver);
             }
         });
-        console.log(negProxy.quantidade);
-        console.log(negProxy.valor);
+        negProxy._quantidade = 10;
+        negProxy._valor = 300;
     </script>
 </body>
 </html>
