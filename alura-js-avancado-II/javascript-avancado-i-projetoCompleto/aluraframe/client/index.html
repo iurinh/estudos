@@ -59,14 +59,21 @@
     </script>
 
     <script>
-        let negProxy = new Proxy(new Negociacao(new Date(),1,100), {
-            set: function(target, prop, value, receiver){
-                console.log(`Valor anterior: ${target[prop]}, Novo valor: ${value}`);
-                return Reflect.set(target, prop, value, receiver);
+        let lista = new Proxy(new ListaNegociacoes(new Date(),1,100), {
+            get(target, prop, receiver){
+                if(['adiciona','esvazia'].includes(prop) && typeof(target[prop]) == typeof(Function)){//Verifica se possui os mesmos nomes de funcao e verifica se é uma funcao
+                    return function(){
+                        console.log(`Interceptando ${prop}`);
+                        Reflect.apply(target[prop], target, arguments);//arguments -> variavel implicita que recebe todos os argumentos da funcao requisitada
+                    }
+                }
+
+                return Reflect.get(target, prop, receiver);
             }
         });
-        negProxy._quantidade = 10;
-        negProxy._valor = 300;
+
+        lista.adiciona(new Negociacao(new Date(), 1, 100));
+        lista.esvazia();
     </script>
 </body>
 </html>
