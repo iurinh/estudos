@@ -3,14 +3,7 @@ class NegociacaoService {
 		return new Promise((resolve, reject) => {
 			let xhr = new XMLHttpRequest();
 	        xhr.open('GET','negociacoes/semana');
-	        
-	        /*
-	            0: requisicao ainda nao iniciada
-	            1: conexao com o servidor estabelecida
-	            2: requsicao recebida
-	            3: processando requisicao
-	            4: requisicao concluida e resposta esta pronta
-	        */
+
 	        xhr.onreadystatechange = () => {
 	            if(xhr.readyState == 4)
 	                if(xhr.status == 200){
@@ -25,8 +18,6 @@ class NegociacaoService {
 
 	        xhr.send();
 		});
-
-		
 	}
 
 	obterNegociacoesDaSemanaAnterior(){
@@ -34,13 +25,6 @@ class NegociacaoService {
 			let xhr = new XMLHttpRequest();
 	        xhr.open('GET','negociacoes/anterior');
 	        
-	        /*
-	            0: requisicao ainda nao iniciada
-	            1: conexao com o servidor estabelecida
-	            2: requsicao recebida
-	            3: processando requisicao
-	            4: requisicao concluida e resposta esta pronta
-	        */
 	        xhr.onreadystatechange = () => {
 	            if(xhr.readyState == 4)
 	                if(xhr.status == 200){
@@ -53,7 +37,7 @@ class NegociacaoService {
 	                }
 	        };
 
-	        xhr.send();//Aciona a requisicao
+	        xhr.send();
 	    });
 	}
 
@@ -61,14 +45,7 @@ class NegociacaoService {
 		return new Promise((resolve, reject) => {
 			let xhr = new XMLHttpRequest();
 	        xhr.open('GET','negociacoes/retrasada');
-	        
-	        /*
-	            0: requisicao ainda nao iniciada
-	            1: conexao com o servidor estabelecida
-	            2: requsicao recebida
-	            3: processando requisicao
-	            4: requisicao concluida e resposta esta pronta
-	        */
+
 	        xhr.onreadystatechange = () => {
 	            if(xhr.readyState == 4)
 	                if(xhr.status == 200){
@@ -81,7 +58,7 @@ class NegociacaoService {
 	                }
 	        };
 
-	        xhr.send();//Aciona a requisicao
+	        xhr.send();
 	    });
 	}
 }
