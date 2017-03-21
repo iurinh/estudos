@@ -7,7 +7,7 @@ class NegociacaoController {
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
 
-        this._listaNegociacoes = new ListaNegociacoes(model => this._negociacoesView.update(model));//Arrow function, escopo 'this' eh lexico, nao mudando. Mantem o escopo. Por isso o 'this' funciona sem se perder nos escopos.
+        this._listaNegociacoes = new ListaNegociacoes(model => this._negociacoesView.update(model));
         
         this._negociacoesView = new NegociacoesView($('#negociacoesView'));
         this._negociacoesView.update(this._listaNegociacoes);
