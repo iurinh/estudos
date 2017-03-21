@@ -32,6 +32,10 @@ class NegociacaoController {
         this._limpaFormulario();   
     }
 
+    importaNegociacoes() {
+        alert('Import');
+    }
+
     apaga(){
         this._listaNegociacoes.esvazia();
 
