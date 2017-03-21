@@ -61,10 +61,10 @@
     <script>
         let lista = new Proxy(new ListaNegociacoes(new Date(),1,100), {
             get(target, prop, receiver){
-                if(['adiciona','esvazia'].includes(prop) && typeof(target[prop]) == typeof(Function)){//Verifica se possui os mesmos nomes de funcao e verifica se é uma funcao
+                if(['adiciona','esvazia'].includes(prop) && typeof(target[prop]) == typeof(Function)){
                     return function(){
                         console.log(`Interceptando ${prop}`);
-                        Reflect.apply(target[prop], target, arguments);//arguments -> variavel implicita que recebe todos os argumentos da funcao requisitada
+                        Reflect.apply(target[prop], target, arguments);
                     }
                 }
 
