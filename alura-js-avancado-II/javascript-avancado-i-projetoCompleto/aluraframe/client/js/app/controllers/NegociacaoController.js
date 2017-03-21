@@ -34,8 +34,8 @@ class NegociacaoController {
 
     importaNegociacoes() {
         let service = new NegociacaoService();
-        service.obterNegociacoesDaSemana((err, negociacoes) => {
-            if(err){
+        service.obterNegociacoesDaSemana((erro, negociacoes) => {
+            if(erro){
                 this._mensagem.texto = erro;
                 return;
             }
