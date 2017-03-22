@@ -74,7 +74,7 @@ class NegociacaoService {
             .getConnection()
             .then(connection => new NegociacaoDAO(connection))
             .then(dao => dao.listaTodos())
-            .catch(() => {
+            .catch(erro => {
                 console.log(erro);
                 throw new Error('Não foi possivel obter as negociações')
             });
@@ -86,7 +86,7 @@ class NegociacaoService {
             .then(connection => new NegociacaoDAO(connection))
             .then(dao => dao.apagaTodos())
             .then(() => 'Negociações apagadas com sucesso')
-            .catch(() => {
+            .catch(erro => {
                 console.log(erro);
                 throw new Error('Não foi possivel apagar as negociações')
             });
@@ -98,7 +98,7 @@ class NegociacaoService {
                 !listaAtual.some(negociacaoExistente => 
                     negociacaoExistente.isEquals(negociacao)))
             )
-            .catch(() => {
+            .catch(erro => {
                 console.log(erro);
                 throw new Error('Não foi possivel buscar negociações para importar')
             });

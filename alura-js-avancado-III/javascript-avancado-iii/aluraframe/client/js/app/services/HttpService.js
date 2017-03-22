@@ -1,31 +1,17 @@
 class HttpService {
 
+    _handleErrors(res){
+        if(!res.ok)
+            throw new Error(res.statusText);
+            
+        return res;
+    }
+
     get(url) {
-
-        return new Promise((resolve, reject) => {
-
-            let xhr = new XMLHttpRequest();
-
-            xhr.open('GET', url);
-
-            xhr.onreadystatechange = () => {
-
-                if(xhr.readyState == 4) {
-
-                    if(xhr.status == 200) {   
-
-                        resolve(JSON.parse(xhr.responseText));  
-                    } else {
-
-                        reject(xhr.responseText);
-                    }
-                }
-            };
-
-            xhr.send();
-
-
-        });
+        url ='w';
+        return fetch(url)//Nao tem como cancelar a requisição, se precisar de algo assim, deverá fazer o modo antigo
+            .then(res => this._handleErrors(res) )
+            .then(res => res.json() )
     }
 
     post(url, dado) {
