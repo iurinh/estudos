@@ -1,12 +1,13 @@
 var ConnectionFactory = (function (){
-//MODULE PATERN
-//Cria uma funcao autoinvocada
-//Isso possibilita deixar as variaveis q antes eram globais como locais
-	var stores = ['negociacoes'];
-	var version = 4;
-	var dbName = 'aluraframe';
+
+	//const auxilia a nao modificar as variaveis
+	const stores = ['negociacoes'];
+	const version = 4;
+	const dbName = 'aluraframe';
 
 	var connection = null;
+
+	var close = null;
 
 	return class ConnectionFactory {
 
@@ -22,8 +23,13 @@ var ConnectionFactory = (function (){
 				}
 
 				openRequest.onsuccess = e => {
-					if(!connection)
+					if(!connection){
 						connection = e.target.result;
+						close = connection.close.bind(connection);//Resolve o problema interno do 'this', entao precisa fazer o bind
+						connection.close = function(){
+							throw new Error('Você não pode fechar diretamente a conexão');
+						}
+					}
 
 					resolve(connection);
 				}
@@ -42,6 +48,14 @@ var ConnectionFactory = (function (){
 
 				connection.createObjectStore(store, {autoIncrement: true});		
 			});
+		}
+
+		static closeConnection(){
+			if(connection){
+				// Reflect.apply(close, connection, []);Uma alternativa caso nao queira usar o bind na hora de resgatar o close com o escopo da conexao
+				close();
+				connection = null;
+			}
 		}
 
 	}
