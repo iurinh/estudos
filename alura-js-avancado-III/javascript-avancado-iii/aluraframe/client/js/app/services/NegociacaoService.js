@@ -96,7 +96,7 @@ class NegociacaoService {
         return this.obterNegociacoes()
             .then(negociacoes => negociacoes.filter(negociacao => 
                 !listaAtual.some(negociacaoExistente => 
-                    JSON.stringify(negociacaoExistente) == JSON.stringify(negociacao)))
+                    negociacaoExistente.isEquals(negociacao)))
             )
             .catch(() => {
                 console.log(erro);
