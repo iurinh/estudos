@@ -21,6 +21,10 @@ class NegociacaoController {
 
         this._ordemAtual = '';
 
+        this._init();
+    }
+
+    _init(){
         ConnectionFactory
             .getConnection()
             .then(connection => new NegociacaoDAO(connection))
@@ -31,25 +35,23 @@ class NegociacaoController {
                 )
             )
             .catch(erro => this._mensagem.texto = erro);
+
+        setInterval(() => this.importaNegociacoes() ,3000);
     }
     
     adiciona(event) {
         event.preventDefault();
 
-        ConnectionFactory
-            .getConnection()
-            .then(connection => {
-                let negociacao = this._criaNegociacao();
-                new NegociacaoDAO(connection)
-                    .adiciona(negociacao)
-                    .then(() => {
-                        this._listaNegociacoes.adiciona(negociacao);
-                        this._mensagem.texto = 'Negociação adicionada com sucesso';
-                        this._limpaFormulario(); 
-                    })
-                    .catch(erro => this._mensagem.texto = erro);
-            });
+        let negociacao = this._criaNegociacao();
 
+        new NegociacaoService()
+            .cadastra(negociacao)
+            .then(mensagem => {
+                this._listaNegociacoes.adiciona(negociacao);
+                this._mensagem.texto = mensagem;
+                this._limpaFormulario();
+            })
+            .catch(erro => this._mensagem.texto = erro);
     }
 
     ordena(coluna) {
@@ -66,6 +68,9 @@ class NegociacaoController {
         let service = new NegociacaoService();
 
         service.obterNegociacoes()
+        .then(negociacoes => negociacoes.filter(negociacao => 
+            !this._listaNegociacoes.negociacoes.some(negociacaoExistente => 
+                JSON.stringify(negociacaoExistente) == JSON.stringify(negociacao))))
         .then(negociacoes => negociacoes.forEach(negociacao => {
             this._listaNegociacoes.adiciona(negociacao);
             this._mensagem.texto = 'Negociaçoes importadas com sucesso.';

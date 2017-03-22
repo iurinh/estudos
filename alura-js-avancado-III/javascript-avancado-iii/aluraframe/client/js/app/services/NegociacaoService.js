@@ -24,7 +24,6 @@ class NegociacaoService {
 
             })
             .catch(erro => {
-                console.log(erro);
                 throw new Error('Não foi possível obter as negociações da semana');
             })
 	  }
@@ -34,7 +33,6 @@ class NegociacaoService {
         return this._http
             .get('negociacoes/anterior')
             .then(negociacoes => {
-                console.log(negociacoes);
                 return negociacoes.map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor));
 
             })
@@ -49,7 +47,6 @@ class NegociacaoService {
         return this._http
             .get('negociacoes/retrasada')
             .then(negociacoes => {
-                console.log(negociacoes);
                 return negociacoes.map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor));
 
             })
@@ -58,4 +55,17 @@ class NegociacaoService {
                 throw new Error('Não foi possível obter as negociações da semana retrasada');
 		    })
 	}
+
+    cadastra(negociacao){
+        return new Promise((resolve,reject) => {
+            ConnectionFactory
+                .getConnection()
+                .then(connection => new NegociacaoDAO(connection))
+                .then(dao => dao.adiciona(negociacao))
+                .then(() => resolve('Negociacão adicionada com sucesso'))
+                .catch(() => {
+                    throw new Error('Não foi possivel adicionar a negociação')
+                });
+        });
+    }
 }
