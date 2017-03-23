@@ -1,5 +1,5 @@
 import {View} from './View';//importa a view, se tiver o export na classe
-
+import {DateHelper} from '../helpers/DateHelper'
 export class NegociacoesView extends View {
     
     constructor(elemento) {
