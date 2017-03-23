@@ -1,4 +1,4 @@
-class View {
+export class View {//export possibilita outras classes terem acesso a ela, mesmo se foi carregado o script antes
     
     constructor(elemento) {
         

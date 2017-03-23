@@ -1,14 +1,27 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.NegociacaoService = undefined;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _HttpService = require('./HttpService');
+
+var _Negociacao = require('../models/Negociacao');
+
+var _ConnectionFactory = require('../services/ConnectionFactory');
+
+var _NegociacaoDAO = require('../dao/NegociacaoDAO');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var NegociacaoService = function () {
+var NegociacaoService = exports.NegociacaoService = function () {
     function NegociacaoService() {
         _classCallCheck(this, NegociacaoService);
 
-        this._http = new HttpService();
+        this._http = new _HttpService.HttpService();
     }
 
     _createClass(NegociacaoService, [{
@@ -27,7 +40,7 @@ var NegociacaoService = function () {
 
             return this._http.get('negociacoes/semana').then(function (negociacoes) {
                 return negociacoes.map(function (objeto) {
-                    return new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor);
+                    return new _Negociacao.Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor);
                 });
             }).catch(function (erro) {
                 throw new Error('Não foi possível obter as negociações da semana');
@@ -39,7 +52,7 @@ var NegociacaoService = function () {
 
             return this._http.get('negociacoes/anterior').then(function (negociacoes) {
                 return negociacoes.map(function (objeto) {
-                    return new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor);
+                    return new _Negociacao.Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor);
                 });
             }).catch(function (erro) {
                 console.log(erro);
@@ -52,7 +65,7 @@ var NegociacaoService = function () {
 
             return this._http.get('negociacoes/retrasada').then(function (negociacoes) {
                 return negociacoes.map(function (objeto) {
-                    return new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor);
+                    return new _Negociacao.Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor);
                 });
             }).catch(function (erro) {
                 console.log(erro);
@@ -62,8 +75,8 @@ var NegociacaoService = function () {
     }, {
         key: 'cadastra',
         value: function cadastra(negociacao) {
-            return ConnectionFactory.getConnection().then(function (connection) {
-                return new NegociacaoDAO(connection);
+            return _ConnectionFactory.ConnectionFactory.getConnection().then(function (connection) {
+                return new _NegociacaoDAO.NegociacaoDAO(connection);
             }).then(function (dao) {
                 return dao.adiciona(negociacao);
             }).then(function () {
@@ -76,8 +89,8 @@ var NegociacaoService = function () {
     }, {
         key: 'lista',
         value: function lista() {
-            return ConnectionFactory.getConnection().then(function (connection) {
-                return new NegociacaoDAO(connection);
+            return _ConnectionFactory.ConnectionFactory.getConnection().then(function (connection) {
+                return new _NegociacaoDAO.NegociacaoDAO(connection);
             }).then(function (dao) {
                 return dao.listaTodos();
             }).catch(function (erro) {
@@ -88,8 +101,8 @@ var NegociacaoService = function () {
     }, {
         key: 'apaga',
         value: function apaga() {
-            return ConnectionFactory.getConnection().then(function (connection) {
-                return new NegociacaoDAO(connection);
+            return _ConnectionFactory.ConnectionFactory.getConnection().then(function (connection) {
+                return new _NegociacaoDAO.NegociacaoDAO(connection);
             }).then(function (dao) {
                 return dao.apagaTodos();
             }).then(function () {
