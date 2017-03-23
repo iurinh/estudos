@@ -1,0 +1,5 @@
+Codigo transcompilado
+
+- instale no npm o babel-cli e o babel-presets
+- coloque no package.json, em scripts, o comando build com a orientação "babel js/app-es6 -d js/app --source-maps"
+- npm run build
