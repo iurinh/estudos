@@ -12,10 +12,11 @@ export class AppComponent {
     fotos: Object[] = [];
 
     constructor(http: Http){//Angular2 compreende que precisa injetar a dependencia de Http, mas precisa de um provider. Esses ":" indica o tipo da variavel, nao precisa de @Inject
-        let stream = http.get('v1/fotos');
-        stream.subscribe(res => {
-            this.fotos = res.json();
-            console.log(this.fotos);
-        });
+        http.get('v1/fotos')
+        .map(res => res.json())
+        .subscribe(
+            fotos => this.fotos = fotos, 
+            erro => console.log(erro)
+        );
     }
 }
