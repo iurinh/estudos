@@ -5,8 +5,10 @@ import {Pipe, PipeTransform} from '@angular/core'
 })
 export class FiltroPorTitulo implements PipeTransform{
 
-    transform(fotos, digitando){
-        console.log(fotos);
-        console.log(digitando);
+    transform(fotos, digitado){
+        
+        digitado = digitado.toLowerCase();
+        return fotos.filter(foto => foto.titulo.toLowerCase().includes(digitado));
+
     }
 }
