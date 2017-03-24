@@ -1,32 +1,38 @@
 <div class="container">
-    <form #meuForm="ngForm" class="row" (submit)="cadastrar($event)">
+    <h1 class="text-center">{{foto.titulo}}</h1>
+    <form [formGroup]="meuForm" class="row" (submit)="cadastrar($event)">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <div class="form-group">
                 <label>Título</label>
                 <input 
-                    required
-                    #titulo="ngModel"
+                    formControlName="titulo"
                     name="titulo" 
                     [(ngModel)]="foto.titulo" 
                     class="form-control" 
                     autocomplete="off">
-                <span 
-                    *ngIf="titulo.invalid" 
-                    class="form-control alert-danger">
-                        Título obrigatório
-                </span>
+                <div *ngIf="meuForm.controls.titulo.invalid">
+                    <span 
+                        *ngIf="meuForm.controls.titulo.errors.required" 
+                        class="form-control alert-danger">
+                            Título obrigatório
+                    </span>
+                    <span 
+                        *ngIf="meuForm.controls.titulo.errors.minlength" 
+                        class="form-control alert-danger">
+                            Titulo deve ter no mínimo 4 caracteres
+                    </span>
+                </div>
             </div>
             <div class="form-group">
                 <label>URL</label>
                 <input 
-                    required
-                    #url="ngModel"
+                    formControlName="url"
                     name="url" 
                     [(ngModel)]="foto.url" 
                     class="form-control" 
                     autocomplete="off">
                 <span 
-                    *ngIf="titulo.invalid" 
+                    *ngIf="meuForm.controls.url.invalid" 
                     class="form-control alert-danger">
                         URL obrigatória
                 </span>
@@ -34,6 +40,7 @@
             <div class="form-group">
                 <label>Descrição</label>
                 <textarea 
+                    formControlName="descricao"
                     name="descricao" 
                     [(ngModel)]="foto.descricao" 
                     class="form-control" 
@@ -41,8 +48,11 @@
                 </textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary" [disabled]="meuForm.form.invalid">
-                Salvar
+            <button 
+                type="submit" 
+                class="btn btn-primary"
+                [disabled]="meuForm.invalid">
+                    Salvar
             </button>
 
             <a [routerLink]="['']" class="btn btn-primary">
@@ -50,6 +60,9 @@
             </a>
 
             <hr>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <foto [url]="foto.url" [titulo]="foto.titulo"></foto>
         </div>
     </form>
 </div>
