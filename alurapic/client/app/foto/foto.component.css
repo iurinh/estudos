@@ -1,7 +1,7 @@
-.foto.efeito{
+.efeito{
     transition: all 1s;
 }
-.foto.efeito:hover {
+.efeito:hover {
     transition: all 0.5s;
     transform: scale(1.15);
 }
