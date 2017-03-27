@@ -25,12 +25,13 @@ export class CadastroComponent{
                 let id = params['id'];
                 console.log('parametro: '+ id);
 
-                this.service
-                    .buscaPorId(id)
-                    .subscribe(
-                        foto => this.foto = foto,
-                        erro => console.log(erro)
-                    );
+                if(id)
+                    this.service
+                        .buscaPorId(id)
+                        .subscribe(
+                            foto => this.foto = foto,
+                            erro => console.log(erro)
+                        );
             }
             );
 
