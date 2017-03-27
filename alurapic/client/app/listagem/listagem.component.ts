@@ -11,8 +11,11 @@ import {FotoComponent} from '../foto/foto.component';
 export class ListagemComponent {
     
     fotos: FotoComponent[] = [];
+    service: FotoService;
 
     constructor(service: FotoService){
+        this.service = service;
+
         service
             .lista()
             .subscribe(
@@ -20,14 +23,21 @@ export class ListagemComponent {
                 erro => console.log(erro)
             );
     }
-
+    
     remover(foto: FotoComponent){
-                console.log('Foto removida com sucesso');
-                console.log(foto);
-        // service
-        //     .remove(foto)
-        //     .subscribe(
-        //         console.log('Foto removida com sucesso');
-        //     )
+        this.service
+            .remove(foto)
+            .subscribe(
+                () => {
+                    console.log('Foto removida com sucesso')
+                    let novasFotos = this.fotos.slice(0);//Slice copia num novo array
+
+                    let indice = novasFotos.indexOf(foto);
+                    novasFotos.splice(indice, 1);
+
+                    this.fotos = novasFotos;
+                },
+                erro => console.log(erro)
+            );
     }
 }
