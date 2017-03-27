@@ -23,6 +23,7 @@
     <div class="row">
         <painel *ngFor="let foto of fotos | filtroPorTitulo: textoProcurado.value" [titulo]="foto.titulo | uppercase" class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <foto [url]="foto.url" [titulo]="foto.titulo"></foto>
+            <button class="btn btn-danger btn-block" (click)="remover(foto)">Remover</button>
         </painel>
     </div>
 </div>

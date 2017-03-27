@@ -20,4 +20,14 @@ export class ListagemComponent {
                 erro => console.log(erro)
             );
     }
+
+    remover(foto: FotoComponent){
+                console.log('Foto removida com sucesso');
+                console.log(foto);
+        // service
+        //     .remove(foto)
+        //     .subscribe(
+        //         console.log('Foto removida com sucesso');
+        //     )
+    }
 }
