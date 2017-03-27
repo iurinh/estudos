@@ -30,7 +30,8 @@
             </a>
             <br>
             <!--<button class="btn btn-danger btn-block" (click)="remover(foto)">Remover</button>-->
-            <botao nome="Remover" estilo="btn-danger btn-block" (acao)="remover(foto, painel)" confirmacao="true"></botao>
+            <botao nome="Remover" estilo="btn-danger btn-block" (acao)="modal.show()" [confirmacao]="false"></botao>
+            <modal #modal frase="Tem certeza que deseja remover esta foto?" (confirma)="remover(foto, painel)"></modal>
         </painel>
     </div>
 </div>
