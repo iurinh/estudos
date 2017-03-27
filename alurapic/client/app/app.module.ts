@@ -7,6 +7,7 @@ import {FotoModule} from './foto/foto.module';
 import {PainelModule} from './painel/painel.module';
 import {CadastroComponent} from './cadastro/cadastro.component';
 import {ListagemComponent} from './listagem/listagem.component';
+import {BotaoModule} from './botao/botao.module';
 import {routing} from './app.routes';
 import 'rxjs/add/operator/map';
 
@@ -18,7 +19,8 @@ import 'rxjs/add/operator/map';
         PainelModule,
         routing,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        BotaoModule
     ],
     declarations: [AppComponent, CadastroComponent, ListagemComponent],
     bootstrap: [AppComponent]
