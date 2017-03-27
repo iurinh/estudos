@@ -53,11 +53,11 @@ export class CadastroComponent{
         this.service
         .cadastra(this.foto)
         .subscribe(res => {
-            this.mensagem = res.mensagem;
+            this.mensagem = res.getMensagem;
 
             this.foto = new FotoComponent();
 
-            if(!res.inclusao)
+            if(!res.ehInclusao)
                 this.router.navigate(['/']);
         }, erro => console.log(erro));
     }

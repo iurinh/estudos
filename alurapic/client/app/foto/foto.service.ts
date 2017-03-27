@@ -16,15 +16,15 @@ export class FotoService {
         this.headers.append('Content-Type','application/json');
     }
 
-    cadastra(foto: FotoComponent): Observable<any>{//any -> indica que eh qualquer coisa (podemos colocar um JSON qualquer). Nao consegue usar o autocomplete
+    cadastra(foto: FotoComponent): Observable<MensagemCadastro>{
         if(foto._id)
             return this.http
                 .put(this.url + "/" + foto._id, JSON.stringify(foto),{headers: this.headers})
-                .map(() => ({mensagem:'Foto alterada com sucesso', inclusao: false}));
+                .map(() => new MensagemCadastro('Foto alterada com sucesso', false));
         else
             return this.http
                 .post(this.url, JSON.stringify(foto),{headers: this.headers})
-                .map(() => ({mensagem:'Foto incluída com sucesso', inclusao: true}));
+                .map(() => new MensagemCadastro('Foto incluída com sucesso', true));
     }
 
     lista(): Observable<FotoComponent[]>{
@@ -44,3 +44,20 @@ export class FotoService {
     }
 }
 
+export class MensagemCadastro{
+    private mensagem: string;
+    private inclusao: boolean;
+
+    constructor(mensagem: string, inclusao: boolean){
+        this.mensagem = mensagem;
+        this.inclusao = inclusao;
+    }
+
+    public getMensagem(): string{
+        return this.mensagem;
+    }
+
+    public ehInclusao(): boolean{
+        return this.inclusao;
+    }
+}
