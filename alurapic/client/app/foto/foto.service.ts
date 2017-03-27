@@ -45,19 +45,17 @@ export class FotoService {
 }
 
 export class MensagemCadastro{
-    private mensagem: string;
-    private inclusao: boolean;
 
-    constructor(mensagem: string, inclusao: boolean){
-        this.mensagem = mensagem;
-        this.inclusao = inclusao;
+    constructor(private _mensagem: string, private _inclusao: boolean){//Ja entende e cria os atributos como privado
+        this._mensagem = _mensagem;
+        this._inclusao = _inclusao;
     }
 
-    public getMensagem(): string{
-        return this.mensagem;
+    get mensagem(): string {
+        return this._mensagem;
     }
 
-    public ehInclusao(): boolean{
-        return this.inclusao;
+    get inclusao(): boolean {
+        return this._inclusao;
     }
 }
