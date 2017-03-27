@@ -11,10 +11,16 @@ export class BotaoComponent {
     @Input() tipo: string = 'button';//CSS Bootstrap
     @Input() desabilitado: boolean = false;
     @Output() acao = new EventEmitter();
+    @Input() confirmacao: boolean = false;
 
     executaAcao(){
-        if(confirm('Deseja excluir?')){
-            this.acao.emit(null);
+        if(this.confirmacao){
+            if(confirm('Deseja excluir?'))
+                this.acao.emit(null);
+            
+            return;
         }
+        
+        this.acao.emit(null);
     }
 }
