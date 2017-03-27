@@ -3,6 +3,9 @@
 </div>
 
 <div class="container">
+
+    <p *ngIf="mensagem.length != 0" class="alert alert-info">{{mensagem}}</p>
+
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <form>
