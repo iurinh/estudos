@@ -16,11 +16,15 @@ export class FotoService {
         this.headers.append('Content-Type','application/json');
     }
 
-    cadastra(foto: FotoComponent): Observable<Response>{
+    cadastra(foto: FotoComponent): Observable<any>{//any -> indica que eh qualquer coisa (podemos colocar um JSON qualquer). Nao consegue usar o autocomplete
         if(foto._id)
-            return this.http.put(this.url + "/" + foto._id, JSON.stringify(foto),{headers: this.headers});
+            return this.http
+                .put(this.url + "/" + foto._id, JSON.stringify(foto),{headers: this.headers})
+                .map(() => ({mensagem:'Foto alterada com sucesso', inclusao: false}));
         else
-            return this.http.post(this.url, JSON.stringify(foto),{headers: this.headers});
+            return this.http
+                .post(this.url, JSON.stringify(foto),{headers: this.headers})
+                .map(() => ({mensagem:'Foto incluída com sucesso', inclusao: true}));
     }
 
     lista(): Observable<FotoComponent[]>{
