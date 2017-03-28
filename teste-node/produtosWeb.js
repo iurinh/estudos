@@ -1,9 +1,13 @@
 var http = require('http');
+var porta = 3000;
+var ip = "localhost";
 
-var server = http.createServer(function(req,res){
-    res.end('<html><body><h1>Listando Produtos</h1><body></html>');
+var server = http.createServer(function(req, res) {
+    console.log("Recebendo request");
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end('<html><body>Request recebido!</body></html>');
 });
 
-server.listen(3000);
+server.listen(porta, ip);
 
-console.log("Servidor rodando");
+console.log("Server running at http://" + ip + ":" + porta + "/");
