@@ -1,0 +1,6 @@
+<h1>{{title}}</h1>
+<form (submit)="enviarNome($event)">
+  <input name="name" [(ngModel)]="name">
+  <button type="submit" [disabled]="! name.length">Enviar</button>
+  {{name}} - tamanho: {{name.length}}
+</form>
