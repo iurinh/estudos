@@ -2,14 +2,14 @@ var mysql = require('mysql');
 
 function createDbConnection(){
     console.log(process.env.NODE_ENV);
-    if(!process.env.NODE_ENV || process.env.node === 'development')
+    if(!process.env.NODE_ENV || process.env.NODE_ENV == 'development')
         return mysql.createConnection({
             host: "localhost",
             user: "root",
             password : "root",
             database: "casadocodigo_nodejs",
         });
-    if(process.env.NODE_ENV == 'test')
+    else if(process.env.NODE_ENV == 'test')
         return mysql.createConnection({
             host: "localhost",
             user: "root",
