@@ -5,13 +5,20 @@ module.exports = function(app) {
         var produtosDAO = new app.infra.ProdutosDAO(connection);
 
         produtosDAO.lista(function(erro,resultados){
-            res.render('produtos/lista',{lista:resultados});
+            res.format({
+                html: function(){
+                    res.render('produtos/lista',{lista:resultados});
+                },
+                json: function(){
+                    res.json(resultados);
+                }
+            });
         });
 
         connection.end();
     };
 
-    app.get('/produtos', listaProdutos);        
+    app.get('/produtos', listaProdutos);   
 
     app.get('produtos/remove', function(req, res){
         var connection = app.infra.connectionFactory();
