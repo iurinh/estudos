@@ -10,6 +10,14 @@ describe('#ProdutosController', function(){
             .expect(200, done);
     });
 
+    it('#listagem html', function(done){
+        request
+            .get('/produtos')
+            .set('Accept', 'text/html')
+            .expect('Content-Type',/html/)
+            .expect(200, done);
+    });
+
     it('#cadastro de novo produto com dados invalidos', function(done){
         request
             .post('/produtos')
