@@ -1,12 +1,12 @@
 
 module.exports = function(app) {
-    var listaProdutos = function(req, res) {
+    var listaProdutos = function(req, res, next) {
         var connection = app.infra.connectionFactory();
         var produtosDAO = new app.infra.ProdutosDAO(connection);
 
         produtosDAO.lista(function(erro,resultados){  
             if(erro)
-                return next(erros);
+                return next(erro);
 
             res.format({//Formatos disponiveis para resgate da informação
                 html: function(){
