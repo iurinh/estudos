@@ -11,7 +11,7 @@ module.exports = function(app) {
         connection.end();
     });
 
-    app.get('produtos/remove', function(){
+    app.get('produtos/remove', function(req, res){
         var connection = app.infra.connectionFactory();
         var produtosBanco = new app.infra.ProdutosDAO(connection);
         var produto = produtosBanco.carrega(id, callback);
@@ -19,5 +19,9 @@ module.exports = function(app) {
             produtosBanco.remove(produto, callback);
 
         connection.end();
+    })
+    
+    app.get('/produtos/form', function(req, res){
+        res.render('produtos/form')
     })
 }
