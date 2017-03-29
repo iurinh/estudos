@@ -9,6 +9,7 @@ module.exports = function(){
     app.set('views', './app/views');//A partir da raiz do projeto
 
     app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.json());
 
     load('routes',{cwd:'app'})//cwd limita as pastas escaneadas
         .then('infra')//adiciona alem da pasta routes outra desejada

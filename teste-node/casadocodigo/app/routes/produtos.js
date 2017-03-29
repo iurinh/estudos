@@ -36,12 +36,14 @@ module.exports = function(app) {
 
     app.post('/produtos', function(req, res){//Como eh um POST, podemos atribuir a mesma URL, mas tera uma funcao diferente
         var produto = req.body;//necessario instalar o bodyParser para conseguir os dados do formulario dessa forma
-                
+        console.log(produto);
+
         var connection = app.infra.connectionFactory();
         var produtosDAO = new app.infra.ProdutosDAO(connection);
 
         produtosDAO.salva(produto, function(erro, resultados){
             produtosDAO.lista(function(erro,resultados){
+                console.log("ERRO->" + erro);
                 res.redirect('/produtos');//Sempre faça um redirecionamento quando fizer um POST
             });
         });
