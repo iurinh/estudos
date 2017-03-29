@@ -31,11 +31,12 @@ module.exports = function(app) {
     });
     
     app.get('/produtos/form', function(req, res){
-        res.render('produtos/form',{errosValidacao:{}});
+        res.render('produtos/form',{errosValidacao:{}, produto:{}});
     });
 
     app.post('/produtos', function(req, res){//Como eh um POST, podemos atribuir a mesma URL, mas tera uma funcao diferente
         var produto = req.body;//necessario instalar o bodyParser para conseguir os dados do formulario dessa forma
+        console.log(produto);
         
         req.assert('titulo', 'Título é obrigatório').notEmpty();
         req.assert('preco', 'Formato inválido').isFloat();
@@ -43,7 +44,7 @@ module.exports = function(app) {
         var erros = req.validationErrors();
 
         if(erros){
-            res.render('produtos/form',{errosValidacao:erros});
+            res.render('produtos/form',{errosValidacao:erros, produto:produto});
             return;
         }
 
