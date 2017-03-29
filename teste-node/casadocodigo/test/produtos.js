@@ -2,6 +2,24 @@ var express = require('../config/express')();
 var request = require('supertest')(express);
 
 describe('#ProdutosController', function(){
+
+    beforeEach(function(done){
+        //Que tal usar o 'node-database-cleaner'
+        var conn = express.infra.connectionFactory();
+        conn.query('delete from produtos', function(err, result){
+            if(!err)
+                done();
+        });
+    });
+
+    afterEach(function(done){
+        var conn = express.infra.connectionFactory();
+        conn.query('delete from produtos', function(err, result){
+            if(!err)
+                done();
+        });
+    })
+
     it('#listagem json', function(done){
         request
             .get('/produtos')
