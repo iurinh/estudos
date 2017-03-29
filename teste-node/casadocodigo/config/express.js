@@ -11,6 +11,7 @@ module.exports = function(){
 
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
+    
     app.use(expressValidator());
 
     load('routes',{cwd:'app'})//cwd limita as pastas escaneadas
