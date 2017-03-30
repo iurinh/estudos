@@ -196,3 +196,32 @@ db.alunos.find({
     "curso.nome":{ $in: ["Sistemas de informação","Engenharia Química", "Moda"]},
     "nome":"Daniela"
 }).pretty()
+
+db.alunos.insert({
+    "nome": "Fernando",
+    "data_nascimento": new Date(1994, 03, 26),
+    "notas": [10, 4.5, 7],
+    "curso": {
+        "nome": "Sistemas de informação"
+    }
+})
+
+//Atualização - UPDATE apenas o 1º
+db.alunos.update(
+    {"curso.nome":"Sistemas de informação"},
+    {$set: {
+        "curso.nome":"Sistemas de Informação"
+    }}
+)
+
+//Update em todos
+db.alunos.update(
+    {"curso.nome":"Sistemas de Informação"},
+    {
+        $set: {
+            "curso.nome":"Sistemas De Informação"
+        },
+    }, {
+        multi: true
+    }
+)
