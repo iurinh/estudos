@@ -244,3 +244,46 @@ db.alunos.update(
         }
     }
 )
+
+//Exercicio - inicio
+db.alunos.insert(
+    {
+        "nome" : "Julio",
+        "data_nascimento" : new Date(1972, 08, 30),
+        "curso" : {
+            "nome" : "Medicina"
+        },
+        "habilidades" : [
+                {
+                "nome" : "inglês",
+                "nível" : "avançado"
+                }    
+            ]
+    }
+)
+
+db.alunos.update(
+    {"_id" : ObjectId("58dd60fc44cf1cb5c876be83")},
+    {
+        "nome" : "Iuri",
+        "data_nascimento" : new Date(1988, 09, 16),
+        "curso" : {
+            "nome" : "Analise de Sistemas"
+        },
+        "habilidades" : [
+                {
+                "nome" : "inglês",
+                "nível" : "basico"
+                },
+                {
+                "nome" : "futebol",
+                "nível" : "intermediário"
+                },
+                {
+                "nome" : "puzzles",
+                "nível" : "avançado"
+                }
+            ]
+    }
+)
+//Exercicio - fim
