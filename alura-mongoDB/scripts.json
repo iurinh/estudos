@@ -340,3 +340,95 @@ db.alunos.findOne({
 })
 
 db.alunos.find().sort({nome:1})
+
+db.alunos.find({nome:"Felipe"}).pretty()
+
+db.alunos.update(
+    {"_id" : ObjectId("58dd4eaaf11f8015d12e8071")},
+    {
+        $set: {
+            localizacao: "Rua Vergueiro, 3185",
+            coordenadas: [-23.5882126,-46.6323547],
+            cidade: "São Paulo"
+        }
+    }
+)
+
+db.alunos.update(
+    {"_id" : ObjectId("58dd4eaaf11f8015d12e8071")},
+    {
+        $set: {
+            localizacao: "Rua Vergueiro, 3185",
+            cidade: "São Paulo",
+            pais: "Brasil",
+            coordinates: [-23.5882126,-46.6323547],
+            type: "Point"
+        }
+    }
+)
+
+//A partir daqui sera considerado a adicao de dados de um import do instrutor
+
+//Correção de localizacao do Felipe pra nao dar erro
+db.alunos.update(
+    {"_id" : ObjectId("58dd4eaaf11f8015d12e8071")},
+    {
+        $set: {
+            localizacao: {type:"Point",coordinates: [-23.5882126,-46.6323547]},
+            cidade: "São Paulo",
+            pais: "Brasil",
+            coordinates: [-23.5882126,-46.6323547],
+            type: "Point"
+        }
+    }
+)
+
+//NEcessario criar o index para utilizar o campo localizacao
+db.alunos.createIndex({
+    localizacao : "2dsphere"
+})
+
+db.alunos.aggregate([
+    {
+        $geoNear : {
+            near : {
+                coordinates : [-23.5640265, -46.6527128],
+                type : "Point"
+            },
+            distanceField: "distancia.calculada",
+            spherical: true
+        }
+    }
+])
+
+//O primeiro ponto eh ele mesmo, pq a distancia é igual a zero
+db.alunos.aggregate([
+    {
+        $geoNear : {
+            near : {
+                coordinates : [-23.5640265, -46.6527128],
+                type : "Point"
+            },
+            distanceField: "distancia.calculada",
+            spherical: true,
+            num: 4
+        }
+    }
+])
+
+//Pula o primeiro
+db.alunos.aggregate([
+    {
+        $geoNear : {
+            near : {
+                coordinates : [-23.5640265, -46.6527128],
+                type : "Point"
+            },
+            distanceField: "distancia.calculada",
+            spherical: true,
+            num: 4
+        }
+    },
+    {$skip: 1}
+])
+
