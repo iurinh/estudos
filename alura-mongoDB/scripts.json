@@ -1,0 +1,86 @@
+db.createCollection("alunos");
+db.alunos.find();
+db.alunos.insert({});
+db.alunos.insert([{},{},{}]);
+db.alunos.remove({"_id":ObjetoIDqueMongodbDefine});
+
+[
+    {
+        "nome": "Felipe",
+        "data_nascimento": new Date(1994, 02, 26),
+        "curso": {
+            "nome": "Sistemas de informação"
+        },
+        "notas": [10.0, 9.0, 4.5],
+        "habilidades": [{
+            "nome": "inglês",
+            "nível": "avançado"
+        }, {
+            "nome": "taekwondo",
+            "nível": "básico"
+        }]
+    },
+
+    {
+        "nome" : "Julio",
+        "data_nascimento" : new Date(1972, 08, 30),
+        "curso" : {
+            "nome" : "Medicina"
+        },
+        "habilidades" : [
+                {
+                "nome" : "inglês",
+                "nível" : "avançado"
+                }    
+            ]
+    },
+
+    {
+        nome:"Alberto",
+        data_nascimento:new Date(1972,09,30),
+        curso:{
+            nome:"Engenharia Química"
+        },
+        vacina : ["antitetanica"],
+        habilidades:[
+            {
+                nome:"inglês",
+                nivel:"intermediário"
+            }
+        ]
+    },
+
+    {
+        "nome": "Paulo",
+        "data_nascimento": new Date(1979, 12, 31),
+        "notas": [10, 9, 7],
+        "curso": {
+            "nome": "Ciências da computação"
+        },
+        "habilidades": [
+            {
+                "nome": "Inglês",
+                "nível": "Avançado"
+            },
+            {
+                "nome": "Francês",
+                "nível": "Avançado"
+            }
+        ] 
+    },
+
+    {
+        "nome": "Daniela",
+        "data_nascimento": new Date(1995, 07, 17),
+        "notas": [10, 9, 7],
+        "curso": {
+            "nome": "Moda"
+        },
+        "habilidades": [
+            {
+                "nome": "Alemão",
+                "nível": "Básico"
+            }
+        ] 
+    }
+]
