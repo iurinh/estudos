@@ -84,3 +84,115 @@ db.alunos.remove({"_id":ObjetoIDqueMongodbDefine});
         ] 
     }
 ]
+
+db.alunos.find().pretty();
+db.alunos.find({nome:"Felipe"})
+
+db.alunos.insert({
+    "nome": "Felipe",
+    "curso": {
+        "nome": "Sistemas de informação"
+    }
+})
+
+db.alunos.find({
+    "habilidades.nome":"inglês"
+}).pretty()
+
+db.alunos.find({
+    "nome":"Felipe",
+    "habilidades.nome":"inglês"
+}).pretty()
+
+// Traz 2 usuarios
+db.alunos.find({
+    $or :[
+            {
+                "curso.nome":"Sistemas de informação"
+            },
+            {
+                "curso.nome":"Engenharia Química"
+            }
+        ]
+}).pretty()
+
+//Nao deve trazer ninguem, pois a Daniela nao esta nesses cursos
+db.alunos.find({
+    $or :[
+            {
+                "curso.nome":"Sistemas de informação"
+            },
+            {
+                "curso.nome":"Engenharia Química"
+            }
+        ],
+    "nome":"Daniela"
+}).pretty()
+
+//Deve trazer apenas 1 Daniela, pq ela esta no curso de moda e seu nome eh Daniela
+db.alunos.find({
+    $or :[
+            {
+                "curso.nome":"Sistemas de informação"
+            },
+            {
+                "curso.nome":"Engenharia Química"
+            },
+            {
+                "curso.nome":"Moda"
+            }
+        ],
+    "nome":"Daniela"
+}).pretty()
+
+//Nao deve trazer ninguem, pois a Daniela nao esta nesses cursos
+db.alunos.find({
+    $or :[
+            {
+                "curso.nome":"Sistemas de informação"
+            },
+            {
+                "curso.nome":"Engenharia Química"
+            }
+        ],
+    $and:[
+        {
+            "nome":"Daniela"
+        }
+    ]
+}).pretty()
+
+//Deve trazer apenas 1 Daniela, pq ela esta no curso de moda e seu nome eh Daniela
+db.alunos.find({
+    $or :[
+            {
+                "curso.nome":"Sistemas de informação"
+            },
+            {
+                "curso.nome":"Engenharia Química"
+            },
+            {
+                "curso.nome":"Moda"
+            }
+        ],
+    $and:[
+        {
+            "nome":"Daniela"
+        }
+    ]
+}).pretty()
+
+
+db.alunos.find({
+    "curso.nome":{ $in: ["Sistemas de informação","Engenharia Química"]}
+}).pretty()
+
+db.alunos.find({
+    "curso.nome":{ $in: ["Sistemas de informação","Engenharia Química"]},
+    "nome":"Daniela"
+}).pretty()
+
+db.alunos.find({
+    "curso.nome":{ $in: ["Sistemas de informação","Engenharia Química", "Moda"]},
+    "nome":"Daniela"
+}).pretty()
