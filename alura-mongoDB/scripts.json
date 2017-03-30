@@ -315,5 +315,28 @@ db.alunos.findOne({
 })
 
 db.alunos.find({
-    notas: { $lt : 4.5}
+    notas: { $lt : 9.5}
 })
+
+db.alunos.find({
+    notas: { $gt : 8.5}
+}).sort({nome:1})
+
+db.alunos.find({
+    notas: { $gt : 8.5}
+}).sort({nome:-1})
+
+db.alunos.find({
+    notas: { $gt : 8.5}
+}).sort({nome:1}).limit(3)
+
+//Exercicio = inicio
+db.alunos.find({
+    notas: { $lt : 5}
+})
+
+db.alunos.findOne({
+    "curso.nome":"Sistemas De Informação"
+})
+
+db.alunos.find().sort({nome:1})
