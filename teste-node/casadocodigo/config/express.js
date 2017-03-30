@@ -19,5 +19,19 @@ module.exports = function(){
         .then('infra')//adiciona alem da pasta routes outra desejada
         .into(app);
 
+    app.use(function(req, res, next){//Coloca-se depois da verificacao das rotas, caso nao encontre, ai sim coloca a pagina de erro
+        res.status(404).render('erros/404');
+        next();
+    });
+
+    app.use(function(error, req, res, next){//o quarto argumento orienta a prioridade de apresentaççao do erro
+        if(process.env.NODE_ENV == 'development'){
+            res.status(500).render('erros/500');
+            return;
+        }
+        next(error);
+    });
+    
+
     return app;
 }
