@@ -225,3 +225,22 @@ db.alunos.update(
         multi: true
     }
 )
+
+
+db.alunos.update(
+    {"_id" : ObjectId("58dd4eaaf11f8015d12e8071")},
+    {
+        $push: {
+            "notas":8.5
+        }
+    }
+)
+
+db.alunos.update(
+    {"_id" : ObjectId("58dd4eaaf11f8015d12e8071")},
+    {
+        $push: {
+            "notas": {$each: [8.5,3] }
+        }
+    }
+)
