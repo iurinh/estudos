@@ -15,7 +15,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
 
-        String[] alunos = {"Daniel", "Ronaldo", "Jefferson", "Felipe", "Ronaldo", "Jefferson", "Felipe"};
+        String[] alunos = {"Daniel", "Ronaldo", "Jefferson", "Felipe", "Daniel", "Ronaldo", "Jefferson", "Felipe", "Daniel", "Ronaldo", "Jefferson", "Felipe", "Ronaldo", "Jefferson", "Felipe"};
 
         ListView listaAlunos = (ListView) findViewById(R.id.listaAlunos);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alunos);
