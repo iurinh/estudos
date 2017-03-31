@@ -13,21 +13,25 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/formulario_nome"
             android:hint="Nome" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/formalario_endereco"
             android:hint="Endereco" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/formulario_telefone"
             android:hint="Telefone" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/formulario_site"
             android:hint="Site" />
 
         <RatingBar
@@ -35,11 +39,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:max="10"
+            android:id="@+id/formaulario_nota"
             android:numStars="5"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/formaulario_salvar"
             android:text="Salvar"/>
 
     </LinearLayout>
