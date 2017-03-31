@@ -32,15 +32,11 @@ public class ListaAlunosActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
                 Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(position);
-                Toast.makeText(ListaAlunosActivity.this, aluno.getNome()+" clicado",Toast.LENGTH_SHORT).show();
-            }
-        });
 
-        listaAlunos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ListaAlunosActivity.this, "Clique longo",Toast.LENGTH_SHORT).show();
-                return false;
+                Intent intentVaiProFormulario = new Intent(ListaAlunosActivity.this, FormularioActivity.class);
+                intentVaiProFormulario.putExtra("aluno",aluno);
+
+                startActivity(intentVaiProFormulario);
             }
         });
 
