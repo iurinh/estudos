@@ -49,7 +49,10 @@ public class AlunosAdapter extends BaseAdapter{
         Aluno aluno = alunos.get(position);
 
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.list_item, null);
+
+        View view = convertView;//Reaproveita as view controladas pelo Android, para nao precisar instanciar tantas desnecessariamente
+        if(view == null)
+            view = layoutInflater.inflate(R.layout.list_item, parent, false);
 
         TextView campoNome = (TextView) view.findViewById(R.id.item_nome);
         campoNome.setText(aluno.getNome());
@@ -66,6 +69,7 @@ public class AlunosAdapter extends BaseAdapter{
             campoFoto.setImageBitmap(bitmapReduzido);
             campoFoto.setScaleType(ImageView.ScaleType.FIT_XY);
         }
+
 
         return view;
     }
