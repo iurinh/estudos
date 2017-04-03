@@ -86,7 +86,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
 
                 if (ActivityCompat.checkSelfPermission(ListaAlunosActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(ListaAlunosActivity.this,new String [] {Manifest.permission.CALL_PHONE}, 123);
+                    ActivityCompat.requestPermissions(ListaAlunosActivity.this,new String [] {Manifest.permission.CALL_PHONE}, 123);//O ultimo parametro eh para distinguir a chamada no onRequestPermissionsResult()
                 } else {
                     Intent intentLigar = new Intent(Intent.ACTION_CALL);
                     intentLigar.setData(Uri.parse("tel:" + aluno.getTelefone()));
