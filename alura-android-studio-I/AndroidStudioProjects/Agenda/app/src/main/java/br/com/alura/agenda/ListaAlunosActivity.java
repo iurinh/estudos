@@ -1,8 +1,12 @@
 package br.com.alura.agenda;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.Browser;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -36,7 +40,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
                 Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(position);
 
                 Intent intentVaiProFormulario = new Intent(ListaAlunosActivity.this, FormularioActivity.class);
-                intentVaiProFormulario.putExtra("aluno",aluno);
+                intentVaiProFormulario.putExtra("aluno", aluno);
 
                 startActivity(intentVaiProFormulario);
             }
@@ -63,7 +67,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     private void carregaLista() {
         AlunoDAO dao = new AlunoDAO(this);
-        List<Aluno> alunos= dao.buscaAlunos();
+        List<Aluno> alunos = dao.buscaAlunos();
         dao.close();
 
         ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
@@ -75,6 +79,23 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
         final Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(info.position);
+
+        MenuItem itemLigar = menu.add("Ligar");
+        itemLigar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                if (ActivityCompat.checkSelfPermission(ListaAlunosActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(ListaAlunosActivity.this,new String [] {Manifest.permission.CALL_PHONE}, 123);
+                } else {
+                    Intent intentLigar = new Intent(Intent.ACTION_CALL);
+                    intentLigar.setData(Uri.parse("tel:" + aluno.getTelefone()));
+
+                    startActivity(intentLigar);
+                }
+                return false;
+            }
+        });
 
         Intent intentSMS = new Intent(Intent.ACTION_VIEW);
         intentSMS.setData(Uri.parse("sms:" + aluno.getTelefone()));//codigo para utilizar o SMS
@@ -110,4 +131,12 @@ public class ListaAlunosActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+//        if(requestCode == 123)//Faz se quiser agir depois de aceitar a permissao
+            //Faz a ligação se o numero for o mesmo do ultimo parametro do " ActivityCompat.requestPermissions"
+
+    }
 }
