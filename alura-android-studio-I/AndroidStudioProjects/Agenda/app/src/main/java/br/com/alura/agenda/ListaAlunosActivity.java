@@ -76,13 +76,22 @@ public class ListaAlunosActivity extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
         final Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(info.position);
 
+        Intent intentSMS = new Intent(Intent.ACTION_VIEW);
+        intentSMS.setData(Uri.parse("sms:" + aluno.getTelefone()));//codigo para utilizar o SMS
+        MenuItem itemSMS = menu.add("Enviar SMS");
+        itemSMS.setIntent(intentSMS);
+
+        Intent intentMapa = new Intent(Intent.ACTION_VIEW);
+        intentMapa.setData(Uri.parse("geo:0,0?q=" + aluno.getEndereco()));//codigo para usar geolocalizacao. "?q=" serve para o google buscar pela string do endereço e nao pela latitude e longitude
+        MenuItem itemMapa = menu.add("Visualizar no mapa");
+        itemMapa.setIntent(intentMapa);
+
         String site = aluno.getSite();
         if(!site.startsWith("http://"))
             site = "http://" + site;
 
         Intent intentSite = new Intent(Intent.ACTION_VIEW);
         intentSite.setData(Uri.parse(site));
-
         MenuItem itemSite = menu.add("Visitar site");
         itemSite.setIntent(intentSite);
 
