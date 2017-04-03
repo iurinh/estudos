@@ -1,6 +1,7 @@
 package br.com.alura.agenda.modelo;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 /**
  * Created by iuhi on 31/03/2017.
@@ -12,6 +13,7 @@ public class Aluno implements Serializable{
     private String telefone;
     private String site;
     private Double nota;
+    private String caminhoFoto;
 
     public Long getId() {
         return id;
@@ -59,6 +61,14 @@ public class Aluno implements Serializable{
 
     public void setNota(Double nota) {
         this.nota = nota;
+    }
+
+    public String getCaminhoFoto() {
+        return caminhoFoto;
+    }
+
+    public void setCaminhoFoto(String caminhoFoto) {
+        this.caminhoFoto = caminhoFoto;
     }
 
     @Override
