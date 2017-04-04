@@ -4,8 +4,10 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.Browser;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,12 +29,18 @@ import br.com.alura.agenda.modelo.Aluno;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
+    private static final int CODIGO_SMS = 456;
     private ListView listaAlunos;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
+
+        if (checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[] { Manifest.permission.RECEIVE_SMS } , CODIGO_SMS);
+        }
 
         listaAlunos = (ListView) findViewById(R.id.listaAlunos);
         listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
