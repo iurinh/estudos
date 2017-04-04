@@ -23,7 +23,7 @@ public class AlunoConverter {
                 js.key("nota").value(aluno.getNota());
                 js.endObject();
             }
-            js.endArray().endArray().endObject();
+            js.endArray().endObject().endArray().endObject();
         } catch (JSONException e) {
             e.printStackTrace();
         }
