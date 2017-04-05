@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/item_nome"
-            android:text="Nome"
+            android:text="@string/campo_nome"
             android:textSize="28sp"
             android:textStyle="bold"
             android:paddingLeft="10dp"
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/item_telefone"
-            android:text="Telefone"
+            android:text="@string/campo_telefone"
             android:textSize="24sp"
             android:paddingLeft="10dp"/>
     </LinearLayout>
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/item_endereco"
-            android:text="Endereço"
+            android:text="@string/campo_endereco"
             android:textSize="24sp"
             android:paddingTop="8dp"
             android:ellipsize="end"
@@ -56,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/item_site"
-            android:text="Site"
+            android:text="@string/campo_site"
             android:textSize="24sp"
             android:paddingTop="8dp"/>
     </LinearLayout>
