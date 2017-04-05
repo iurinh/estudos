@@ -75,6 +75,7 @@ public class ProvasActivity extends AppCompatActivity {
             detalhesFragment.setArguments(parametros);
 
             tx.replace(R.id.frame_principal, detalhesFragment);
+            tx.addToBackStack(null);//Coloca o estado anterior na pilha do botao voltar, como se fosse uma activity. O parametro serve para identificar o ponto de retorno
             tx.commit();
         }else {
             DetalhesProvaFragment detalhesFragment = (DetalhesProvaFragment) manager.findFragmentById(R.id.frame_secundario);
