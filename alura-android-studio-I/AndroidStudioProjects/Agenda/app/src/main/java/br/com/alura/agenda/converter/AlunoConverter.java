@@ -18,10 +18,14 @@ public class AlunoConverter {
         try {
             js.object().key("list").array().object().key("aluno").array();
             for(Aluno aluno : alunos){
-                js.object();
-                js.key("nome").value(aluno.getNome());
-                js.key("nota").value(aluno.getNota());
-                js.endObject();
+                js.object()
+                .key("id").value(aluno.getId())
+                .key("nome").value(aluno.getNome())
+                .key("telefone").value(aluno.getTelefone())
+                .key("endereco").value(aluno.getEndereco())
+                .key("site").value(aluno.getSite())
+                .key("nota").value(aluno.getNota())
+                .endObject();
             }
             js.endArray().endObject().endArray().endObject();
         } catch (JSONException e) {
