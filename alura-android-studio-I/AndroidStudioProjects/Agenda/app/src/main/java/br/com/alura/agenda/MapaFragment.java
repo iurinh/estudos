@@ -25,6 +25,8 @@ import br.com.alura.agenda.modelo.Aluno;
 
 public class MapaFragment extends SupportMapFragment implements OnMapReadyCallback {
 
+    private GoogleMap googleMap;
+
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -35,11 +37,11 @@ public class MapaFragment extends SupportMapFragment implements OnMapReadyCallba
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        this.googleMap = googleMap;
         LatLng posicaoDaEscola = pegaCoordenadaDoEndereço("Rua Jose da Costa de Andrade, 105");
 
         if(posicaoDaEscola != null){
-            CameraUpdate update = CameraUpdateFactory.newLatLngZoom(posicaoDaEscola,17);
-            googleMap.moveCamera(update);
+            centralizaEm(posicaoDaEscola);
         }
 
         AlunoDAO dao = new AlunoDAO(getContext());
@@ -58,7 +60,14 @@ public class MapaFragment extends SupportMapFragment implements OnMapReadyCallba
         }
         dao.close();
 
-        new Localizador(getContext(), googleMap);
+        new Localizador(getContext(), this);
+    }
+
+    public void centralizaEm(LatLng coordenada) {
+        if (googleMap != null) {
+            CameraUpdate update = CameraUpdateFactory.newLatLngZoom(coordenada, 17);
+            googleMap.moveCamera(update);
+        }
     }
 
     private LatLng pegaCoordenadaDoEndereço(String endereco) {

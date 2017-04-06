@@ -24,18 +24,16 @@ import com.google.android.gms.maps.model.LatLng;
 public class Localizador implements GoogleApiClient.ConnectionCallbacks, LocationListener {
 
     private final GoogleApiClient client;
-    private Context context;
-    private GoogleMap mapa;
+    private final MapaFragment mapaFragment;
 
-    public Localizador(Context context, GoogleMap mapa) {
+    public Localizador(Context context, MapaFragment mapaFragment) {
         client = new GoogleApiClient.Builder(context)
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
                 .build();
-        this.context = context;
-        this.mapa = mapa;
 
         client.connect();
+        this.mapaFragment = mapaFragment;
     }
 
     @Override
@@ -45,10 +43,7 @@ public class Localizador implements GoogleApiClient.ConnectionCallbacks, Locatio
         request.setInterval(1000);//Em milisegundos. Caso tenha passado 1 segundo
         request.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);//Escolhe o melhor dispositivo do celular q possa apresentar os dados com relação a bateria e posicao
 
-//        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            LocationServices.FusedLocationApi.requestLocationUpdates(client, request, this);
-//        }
-
+        LocationServices.FusedLocationApi.requestLocationUpdates(client, request, this);
     }
 
     @Override
@@ -59,7 +54,6 @@ public class Localizador implements GoogleApiClient.ConnectionCallbacks, Locatio
     @Override
     public void onLocationChanged(Location location) {
         LatLng coordenada = new LatLng(location.getLatitude(), location.getLongitude());
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(coordenada);
-        mapa.moveCamera(cameraUpdate);
+        mapaFragment.centralizaEm(coordenada);
     }
 }
