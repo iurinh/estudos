@@ -14,6 +14,7 @@
   "author": "iurinh",
   "license": "ISC",
   "dependencies": {
+    "consign": "^0.1.4",
     "express": "^4.15.2"
   }
 }
