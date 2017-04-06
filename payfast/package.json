@@ -11,6 +11,9 @@
     "pagamentos",
     "api"
   ],
-  "author": "Iuri Hidalgo",
-  "license": "ISC"
+  "author": "iurinh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
 }
