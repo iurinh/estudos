@@ -1,0 +1,12 @@
+100 - conexao continuada
+
+200 - sucesso
+201 - created com sucesso
+
+301 - redirecionamento
+302
+
+400 - bad request -> indicam erro da entrada de dados
+404 - not found
+
+500 - erro interno do servidor
