@@ -57,13 +57,15 @@ public class MapaFragment extends SupportMapFragment implements OnMapReadyCallba
             }
         }
         dao.close();
+
+        new Localizador(getContext(), googleMap);
     }
 
     private LatLng pegaCoordenadaDoEndereço(String endereco) {
         Geocoder geocoder = new Geocoder(getContext());
         List<Address> resultados = null;
         try {
-            resultados = geocoder.getFromLocationName(endereco, 17);
+            resultados = geocoder.getFromLocationName(endereco, 5);
 
             if(!resultados.isEmpty()){
                 Log.i(">>>>>getLatitude",resultados.get(0).getLatitude()+"");
