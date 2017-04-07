@@ -32,8 +32,26 @@ module.exports = function(app){
         res.status(500).send(erro);
       } else {
         console.log('Pagamento criado');
-        res.location('/pagamentos/pagamento/' + resultado.insertId);//Caso tenha criado um novo acesso
-        res.status(201).json(pagamento);
+        pagamento.id = resultado.insertId;
+        res.location('/pagamentos/pagamento/' + pagamento.id);//Caso tenha criado um novo acesso
+
+        var response = {
+          dados_do_pagamento: pagamento,
+          links: [
+            {
+              href: "http://localhost:3000/pagamentos/pagamento/" + pagamento.id,
+              rel: "confirmar",
+              method: "PUT"
+            },
+            {
+              href: "http://localhost:3000/pagamentos/pagamento/" + pagamento.id,
+              rel: "cancelar",
+              method: "DELETE"
+            }
+          ]
+        }
+
+        res.status(201).json(response);
       }
     })
   });
