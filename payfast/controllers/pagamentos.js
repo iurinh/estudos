@@ -1,4 +1,8 @@
 module.exports = function(app){
+  const PAGAMENTO_CRIADO = "CRIADO";
+  const PAGAMENTO_CONFIRMADO = "CONFIRMADO";
+  const PAGAMENTO_CANCELADO = "CANCELADO";
+
   app.get('/pagamentos', function(req, res){
     console.log('Recebida requisicao de teste na porta 3000');
     res.send('<h1>OK</h1>');
@@ -20,7 +24,7 @@ module.exports = function(app){
     var pagamento = req.body.pagamento;
     console.log('Processando uma requisicao de um novo pagamento...');
 
-    pagamento.status = 'CRIADO';
+    pagamento.status = PAGAMENTO_CRIADO;
     pagamento.data = new Date();
 
     var connection = app.persistencia.connectionFactory();
@@ -100,7 +104,7 @@ module.exports = function(app){
     var id = req.params.id;
 
     pagamento.id = id;
-    pagamento.status= 'CONFIRMADO';
+    pagamento.status= PAGAMENTO_CONFIRMADO;
 
     var connection = app.persistencia.connectionFactory();
     var pagamentoDao = new app.persistencia.PagamentoDAO(connection);
@@ -120,7 +124,7 @@ module.exports = function(app){
     var id = req.params.id;
 
     pagamento.id = id;
-    pagamento.status= 'CANCELADO';
+    pagamento.status= PAGAMENTO_CANCELADO;
 
     var connection = app.persistencia.connectionFactory();
     var pagamentoDao = new app.persistencia.PagamentoDAO(connection);

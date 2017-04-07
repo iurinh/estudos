@@ -1,4 +1,6 @@
 module.exports = function(app){
+  const CARTAO_AUTORIZADO = 'AUTORIZADO';
+
   app.get('/pagamentos', function(req, res){
     console.log('Recebida requisicao de teste na porta 3001');
     res.send('<h1>OK</h1>');
@@ -22,7 +24,7 @@ module.exports = function(app){
 
     console.log('Processando requisicao de autorizacao...');
 
-    cartao.status = 'AUTORIZADO';
+    cartao.status = CARTAO_AUTORIZADO;
 
     var response = {
       dados_do_cartao: cartao
