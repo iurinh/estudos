@@ -38,31 +38,33 @@ module.exports = function(app){
           var cartao = req.body['cartao'];
           console.log(cartao);
 
-          clienteCartoes.autoriza(cartao);
+          var clienteCartoes = new app.servicos.clienteCartoes();
+          clienteCartoes.autoriza(cartao, function(exception, request, response, retorno){
+            console.log(retorno);
+            res.status(201).json(cartao);
+          });
+        } else {
+          res.location('/pagamentos/pagamento/' + pagamento.id);//Caso tenha criado um novo acesso
 
-          res.status(201).json(cartao);
-          return;
+          var response = {
+            dados_do_pagamento: pagamento,
+            links: [
+              {
+                href: "http://localhost:3000/pagamentos/pagamento/" + pagamento.id,
+                rel: "confirmar",
+                method: "PUT"
+              },
+              {
+                href: "http://localhost:3000/pagamentos/pagamento/" + pagamento.id,
+                rel: "cancelar",
+                method: "DELETE"
+              }
+            ]
+          }
+
+          res.status(201).json(response);
         }
 
-        res.location('/pagamentos/pagamento/' + pagamento.id);//Caso tenha criado um novo acesso
-
-        var response = {
-          dados_do_pagamento: pagamento,
-          links: [
-            {
-              href: "http://localhost:3000/pagamentos/pagamento/" + pagamento.id,
-              rel: "confirmar",
-              method: "PUT"
-            },
-            {
-              href: "http://localhost:3000/pagamentos/pagamento/" + pagamento.id,
-              rel: "cancelar",
-              method: "DELETE"
-            }
-          ]
-        }
-
-        res.status(201).json(response);
       }
     })
   });
