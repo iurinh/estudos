@@ -1,24 +1,18 @@
 {
-  "name": "payfast",
+  "name": "cardfast",
   "version": "1.0.0",
-  "description": "Um gateway para pagamento atraves de recursos http.",
+  "description": "Pagamentos com cartoes",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "gateway",
-    "pagamentos",
-    "api"
-  ],
-  "author": "iurinh",
+  "author": "Iuri Hidalgo",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.1",
     "consign": "^0.1.4",
     "express": "^4.15.2",
     "express-validator": "^3.1.3",
-    "mysql": "^2.13.0",
-    "restify": "^4.3.0"
+    "mysql": "^2.13.0"
   }
 }
