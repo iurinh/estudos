@@ -11,7 +11,11 @@ PagamentoDAO.prototype.salva = function(pagamento, callback) {
 }
 
 PagamentoDAO.prototype.buscaPorId = function(id, callback) {
-    this._connection.query('select * from pagamentos where id = ?', id, callback);
+    this._connection.query('select * from pagamentos where id = ?', [id], callback);
+}
+
+PagamentoDAO.prototype.atualiza = function(pagamento, callback) {
+    this._connection.query('update pagamentos set status = ? where id = ?', [pagamento.status, pagamento.id], callback);
 }
 
 module.exports = function() {
