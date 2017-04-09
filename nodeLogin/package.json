@@ -1,0 +1,23 @@
+{
+  "name": "node-login",
+  "version": "1.0.0",
+  "description": "Back end para realização de login",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "login",
+    "acesso",
+    "segurança"
+  ],
+  "author": "IuriNH",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "consign": "^0.1.4",
+    "express": "^4.15.2",
+    "express-validator": "^3.1.3",
+    "mysql": "^2.13.0"
+  }
+}
