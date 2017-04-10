@@ -12,6 +12,16 @@ if(cluster.isMaster){//somente pode iniciar uma nova thread a partir da master. 
     cluster.fork();
   });
 
+  cluster.on('listening', function(worker){
+    console.log('cluster conectado ' + worker.process.pid);
+  });
+
+  //Caso o processo da thread seja 'kill' ele lanca uma nova thread no lugar
+  cluster.on('exit', worker => {
+    console.log('cluster %d desconectado ', worker.process.pid);
+    cluster.fork();
+  });
+
 } else {
   console.log('thread slave');
   require('./index.js');//Isso possibilita subir uma aplicação (servidor) em cada processador da maquina. A propria API Cluster vai gerenciar a utilização dos processadores usando a mesma porta

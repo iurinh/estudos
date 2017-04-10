@@ -1,2 +1,3 @@
 {"level":"info","message":"Consultando Pgto: 25","timestamp":"2017-04-10T17:25:12.299Z"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [10/Apr/2017:17:25:12 +0000] \"GET /pagamentos/pagamento/25 HTTP/1.1\" 200 154\n","timestamp":"2017-04-10T17:25:12.325Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [10/Apr/2017:17:52:56 +0000] \"POST /pagamentos/pagamento HTTP/1.1\" 201 522\n","timestamp":"2017-04-10T17:52:56.823Z"}
