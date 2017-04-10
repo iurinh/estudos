@@ -13,3 +13,8 @@ curl http://localhost:3000/pagamentos/pagamento/10 -X DELETE -v
 
 POST CORREIOS
 curl -X POST http://localhost:3000/correios/calculo-prazo -H "Content-type: application/json" -d @files/dadosEntrega.json
+
+
+POST IMAGEM (utiliza octet-stream para nao ocasionar problema de arquivo muito grande, pois ele envia parcialmente)
+curl -X POST http://localhost:3000/upload/imagem --data-binary @imagem.jpg -H "Content-type: application/octet-stream"
+curl -X POST http://localhost:3000/upload/imagem --data-binary @imagem.jpg -H "Content-type: application/octet-stream" -H "teste-imagem.jpg"
