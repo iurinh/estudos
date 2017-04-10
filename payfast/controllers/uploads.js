@@ -8,7 +8,7 @@ module.exports = function(app){
     req.pipe(fs.createWriteStream('files/' + fileName))
        .on('finish', function(){
          console.log('Finalizou escrita');
-         res.status(200).send('ok');
+         res.status(201).send('ok');
        });
   });
 }

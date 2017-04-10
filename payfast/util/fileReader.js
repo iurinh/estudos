@@ -1,4 +1,4 @@
-var fs = require('fs');//File System - ja faz parte do Core do Node Express
+var fs = require('fs');//File System - ja faz parte do Core do Node
 
 fs.readFile('imagem.jpg', function(error, buffer){
   console.log('Arquivo lido');

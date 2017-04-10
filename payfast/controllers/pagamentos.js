@@ -138,4 +138,23 @@ module.exports = function(app){
       res.status(204).send(pagamento);
     });
   });
+
+  app.get('/pagamentos/pagamento/:id', function(req, res){
+    var id = req.params.id;
+    console.log('Consultando Pgto: ' + id);
+
+    var connection = app.persistencia.connectionFactory();
+    var pagamentoDao = new app.persistencia.PagamentoDAO(connection);
+
+    pagamentoDao.buscaPorId(id, function(erro, resultado){
+      if(erro){
+        console.log('Erro ao consultar no banco: ' + erro);
+        res.status(500).send(erro);
+        return;
+      }
+
+      console.log('Pagamento encontrado: ' + JSON.stringify(resultado));
+      res.status(200).json(resultado);
+    })
+  })
 }

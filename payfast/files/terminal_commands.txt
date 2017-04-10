@@ -1,6 +1,9 @@
 GET (Faça no navegador)
 http://localhost:3000/pagamentos/pagamento
 
+GET (busca por id)
+curl -X GET http://localhost:3000/pagamentos/pagamento/8 -v
+
 POST
 curl http://localhost:3000/pagamentos/pagamento -X POST -v -H "Content-type: application/json" -d @files/pagamentos.json | json_pp
 
