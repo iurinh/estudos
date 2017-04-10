@@ -1,3 +1,5 @@
+var logger = require('../servicos/logger');
+
 module.exports = function(app){
   const PAGAMENTO_CRIADO = "CRIADO";
   const PAGAMENTO_CONFIRMADO = "CONFIRMADO";
@@ -9,7 +11,7 @@ module.exports = function(app){
   });
 
   app.post('/pagamentos/pagamento', function(req, res){
-
+    
     req.assert('pagamento.forma_de_pagamento','Forma de pagamento obrigatório.').notEmpty();
     req.assert('pagamento.valor','Valor obrigatório e deve ser um decimal.').notEmpty().isFloat();
     req.assert("pagamento.moeda", "Moeda é obrigatória e deve ter 3 caracteres").notEmpty().len(3,3);
@@ -148,6 +150,7 @@ module.exports = function(app){
   app.get('/pagamentos/pagamento/:id', function(req, res){
     var id = req.params.id;
     console.log('Consultando Pgto: ' + id);
+    logger.info('Consultando Pgto: ' + id);
 
     var memcached = app.servicos.memcachedClient();
     memcached.get('pagamento-' + id, function(erro, retorno){

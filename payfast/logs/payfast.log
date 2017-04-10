@@ -1,2 +1,4 @@
-{"level":"info","message":"Log utilizando winston - info","timestamp":"2017-04-10T15:15:37.740Z"}
-{"level":"info","message":"Log utilizando winston - metodo info","timestamp":"2017-04-10T15:15:37.743Z"}
+{"level":"info","message":"Consultando Pgto: 8","timestamp":"2017-04-10T17:03:18.155Z"}
+{"level":"info","message":"Consultando Pgto: 8","timestamp":"2017-04-10T17:03:26.092Z"}
+{"level":"info","message":"Consultando Pgto: 25","timestamp":"2017-04-10T17:09:11.737Z"}
+{"level":"info","message":"Consultando Pgto: 8","timestamp":"2017-04-10T17:09:54.044Z"}
