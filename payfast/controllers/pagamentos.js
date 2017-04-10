@@ -38,6 +38,12 @@ module.exports = function(app){
         console.log('Pagamento criado');
         pagamento.id = resultado.insertId;
 
+        //Cria no cache tambem, para nao ser necessário buscar no banco novamente, caso necessario
+        var memcachedClient = app.servicos.memcachedClient();
+        memcachedClient.set('pagamento-' + pagamento.id, pagamento, 60000, function(erro){
+          console.log('Nova chave adicionada ao cache: pagamento-' + pagamento.id);
+        });
+
         if(pagamento.forma_de_pagamento == 'cartao'){
           var cartao = req.body['cartao'];
           console.log(cartao);
@@ -143,18 +149,28 @@ module.exports = function(app){
     var id = req.params.id;
     console.log('Consultando Pgto: ' + id);
 
-    var connection = app.persistencia.connectionFactory();
-    var pagamentoDao = new app.persistencia.PagamentoDAO(connection);
+    var memcached = app.servicos.memcachedClient();
+    memcached.get('pagamento-' + id, function(erro, retorno){
+      if(erro || !retorno){
+        console.log('MISS - chave nao encontrada');
 
-    pagamentoDao.buscaPorId(id, function(erro, resultado){
-      if(erro){
-        console.log('Erro ao consultar no banco: ' + erro);
-        res.status(500).send(erro);
-        return;
+        var connection = app.persistencia.connectionFactory();
+        var pagamentoDao = new app.persistencia.PagamentoDAO(connection);
+
+        pagamentoDao.buscaPorId(id, function(erro, resultado){
+          if(erro){
+            console.log('Erro ao consultar no banco: ' + erro);
+            res.status(500).send(erro);
+            return;
+          }
+
+          console.log('Pagamento encontrado: ' + JSON.stringify(resultado));
+          res.status(200).json(resultado);
+        });
+      } else {
+        console.log('Hit - valor: ' + JSON.stringify(retorno));
+        res.status(200).json(retorno);
       }
-
-      console.log('Pagamento encontrado: ' + JSON.stringify(resultado));
-      res.status(200).json(resultado);
-    })
+    });
   })
 }
