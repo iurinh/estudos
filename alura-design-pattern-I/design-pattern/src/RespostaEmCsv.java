@@ -1,18 +1,22 @@
 
 public class RespostaEmCsv implements Resposta{
 
-	private Resposta outraReposta;
+	private Resposta outraResposta;
+
+	public RespostaEmCsv(Resposta resposta) {
+		this.outraResposta = resposta;
+	}
 
 	public void responde(Requisicao req, Conta conta) {
 		if(req.getFormato() == Formato.CSV) {
 			System.out.println(conta.getNome() + "," + conta.getSaldo());
 		}
 		else {
-			outraReposta.responde(req, conta);
+			outraResposta.responde(req, conta);
 		}
 	}
 
 	public void setProxima(Resposta resposta) {
-		this.outraReposta = resposta;
+		this.outraResposta = resposta;
 	}
 }

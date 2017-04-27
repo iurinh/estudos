@@ -8,12 +8,9 @@ public class TesteDeRespostaRequisicao {
 		Requisicao reqPORCENTO = new Requisicao(Formato.PORCENTO);
 		
 		//Chain of Responsability
-		Resposta r1 = new RespostaEmXml();
-		Resposta r2 = new RespostaEmCsv();
-		Resposta r3 = new RespostaEmPorcento();
-		
-		r1.setProxima(r2);
-		r2.setProxima(r3);
+		Resposta r3 = new RespostaEmPorcento(null);
+		Resposta r2 = new RespostaEmCsv(r3);
+		Resposta r1 = new RespostaEmXml(r2);
 		
 		r1.responde(reqXML, conta);
 		r1.responde(reqCSV, conta);
