@@ -4,7 +4,9 @@ self.addEventListener("fetch", function(event){
     let promiseResposta = caches.open("ceep-imagens")
     .then(cache => {
         return cache.match(pedido)
-    }).then(resposta => {
+    }).then(respostaCache => {
+        let resposta = respostaCache ? respostaCache : fetch(pedido);
+
         return resposta
     });
 
