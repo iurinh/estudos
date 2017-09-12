@@ -1,10 +1,11 @@
+let versao = 6;
 
 let arquivos = [
     "/",
     'css/estilos.css',
     'css/opcoesDaPagina.css',
     'css/opcoesDoCartao.css',
-    'css/cabecalho.css',
+    'css/cab.css',
     'css/login.css',
     'css/loginForm.css',
     'css/loginStatus.css',
@@ -34,9 +35,19 @@ let arquivos = [
 ]
 
 self.addEventListener("install", function(){
-    caches.open("ceep-arquivos")
+    console.log('Instalou')
+})
+
+self.addEventListener("activate", function(){
+    console.log("Instalou")
+    
+    caches.open("ceep-arquivos-"+versao)
     .then(cache => {
         cache.addAll(arquivos)
+        .then(cache => {
+            caches.delete("ceep-arquivos-"+(versao - 1))
+            caches.delete("ceep-arquivos")
+        })
     })
 })
 
