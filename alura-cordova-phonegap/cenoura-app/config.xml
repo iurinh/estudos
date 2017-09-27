@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" version="1.0.0" id="org.iurinh.cenouraapp">
+    <name>Só de cenoura</name>
+
+    <description>
+        Menu do restaurante Só de cenoura
+    </description>
+
+    <author href="http://www.iurinh.org" email="iurinh@gmail.com">
+        Iuri do Nascimento Hidalgo
+    </author>
+
+    <icon src="icon.png" />
+    
+    <plugin name="cordova-plugin-splashscreen" />
+    <splash src="splash.png" />
+
+    <preference name="orientation" value="portrait" />
+    <preference name="fullscreen" value="true" />
+    <preference name="permissions" value="none" />
+    <platform name="android" />
+
+</widget>
