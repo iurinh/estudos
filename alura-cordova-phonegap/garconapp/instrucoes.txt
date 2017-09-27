@@ -1,0 +1,7 @@
+Para Construir app:
+- cordova create garconapp org.iurinh.garconapp "Garçonete Só de Cenoura"
+- cordova platform add browser
+- cordova run browser
+- cordova run android
+- cordova run ios
+- cordova run windows
