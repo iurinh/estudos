@@ -1,0 +1,77 @@
+Para Construir app:
+- cordova create garconapp org.iurinh.garconapp "Garçonete Só de Cenoura"
+- se nao possuir diretorio "node_modules": npm install (dentro do diretorio garconapp)
+- cordova platform add browser
+- cordova platform add android
+- cordova platform add ios
+- cordova platform add windows
+
+Para Rodar
+- cordova run browser
+- cordova run android
+- cordova run android --device
+- cordova run ios
+- cordova run windows
+
+Comandos:
+(deve ser adicionados no path das variaveis de ambiente o diretorio tools e tools/bin da instalacao do sdkmanager)
+- android sdk (se for uma versao com sdkmanager.exe abre a ide)
+- sdkmanager 
+
+NO MAC (para IOS):
+- Baixar o XCode
+- Instalar um Simulador (normalmente ja vem um default)
+- Criar conta de desenvolvedor Apple (precisa usar apple ID)
+- Configurar o id da aplicacao (o que parece um site ao contrario "org.iurinh.garconapp)
+- Deve possuir o node instalado
+- Comando:
+-- sudo npm -g install ios-sim ios-deploy
+-- cordova platform add ios
+-- cordova emulate ios
+-- cordova emulate ios --list
+-- cordova emulate ios --target iPad-Air (esse aqui eh um exemplo)
+- Da pra rodar direto no XCode, abrindo o diretorio platform/ios e dando um "play", mas antes deve configurar o Apple ID
+
+Instruções a extras, que nao fazem parte do curso:
+Como estamos desenvolvendo em um ambiente hibrido, acredito que não deveria ser necessario instalar o Android Studio. E como o temos todas as ferramentas para emular um dispositivo no pacote de ferramentas que baixamos, entao resolvi fazer tudo pro linha de comando:
+Certifique-se que esteja conectado à Internet.
+Passos:
+- baixar e instalar o nodeJS:
+    - https://nodejs.org/dist/v6.11.3/node-v6.11.3-x64.msi (esse eh um exemplo de link, veja no site o mais atualizado)
+    - Verifique se foi adicionada variavel de ambiente
+- instalar o cordova:
+    - npm install -g cordova
+- baixar e instalar o JDK (de preferencia o mais atualizado)
+    - http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-windows-x64.exe (esse eh um exemplo de link, veja no site o mais atualizado)
+- baixar sdkmanager (zip):
+    - https://developer.android.com/studio/index.html
+    - Vá para o final da pagina e baixe a versao de "ferramentas por linha de comando"
+    - https://dl.google.com/android/repository/sdk-tools-windows-3859397.zip (esse eh um exemplo de link, veja no site o mais atualizado)
+- baixar gradle (zip):
+    - https://gradle.org/install/
+    - Prefira instalar manualmente
+    - https://gradle.org/install/#manually
+    - https://services.gradle.org/distributions/gradle-4.2-bin.zip (esse eh um exemplo de link, veja no site o mais atualizado)
+- descompacte os dois arquivos (zip) baixados e adicione variaveis de ambiente. No meu caso as variaveis de ambiente ficaram algo como:
+    C:\Program Files\nodejs\;
+    %JAVA_HOME%\bin;
+    %ANDROID_HOME%\tools;
+    %ANDROID_HOME%\tools\bin;
+    %ANDROID_HOME%\emulator;
+    %ANDROID_HOME%\gradle-4.2;
+- verifique com os seguintes comandos as variaveis de ambiente estao corretas:
+    - sdkmanager --list
+    - avdmanager list
+    - emulator -list-avds (pode nao apresentar resposta ou msg de nao possuir avd)
+- Esses passos são de instalação (praticamente de download e criação de arquivos pelas ferramentas)
+    - sdkmanager build-tools;25.0.0 (pode ser outra versao)
+    - sdkmanager platform-tools
+    - sdkmanager system-images;android-24;default;x86_64 (esse comando vc pode alterar a imagem, mas recomendo pegar uma que seja default, para nao dar problema ao criar uma avd)
+    - sdkmanager platforms;android-25 (pode ser outra versao)
+    - avdmanager create avd -n emuladorAndroid -k system-images;android-24;default;x86_64 (pode ser outra imagem)
+- No seu projeto com formato WEB:
+    - cordova create garconApp br.com.iurinh.garconapp "Aplicativo do garçom" (pode mudar parametros de entrada)
+    - cd garconApp
+    - cordova platform add android (pode adicionar outros SO)
+    - cordova run android (pode ser outro SO)
+    - cordova run android --device (caso queira rodar no dispositivo)
