@@ -19,7 +19,7 @@ $('#botao-confirmar').on('click', function(){
         texto += produto + ": " + quantidade + ",";
     })
     
-    $('#resumo').text(texto)
+    $('#resumo').empty().text(texto);
 })
 
 $('.collection').on('click', '.badge', function(){
