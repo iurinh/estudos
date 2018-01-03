@@ -75,3 +75,10 @@ Passos:
     - cordova platform add android (pode adicionar outros SO)
     - cordova run android (pode ser outro SO)
     - cordova run android --device (caso queira rodar no dispositivo)
+
+
+Dicas extras do curso:
+- Para gerar um icone para cada plataforma, recomenda-se usar o Ionic. Com ele pode-se usar apenas uma imagem e o framework gera o codigo no config.xml
+    - npm install -g ionic
+    - Utilize icon.png e splash.png como nome dos arquivos (de preferencia quadrados e que sejam de boa qualidade)
+    - 

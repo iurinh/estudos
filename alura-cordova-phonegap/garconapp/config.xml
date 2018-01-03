@@ -11,4 +11,5 @@
     <preference name="Fullscreen" value="true" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackgrounColor" value="0xF2F2F2FF" />
+    
 </widget>
