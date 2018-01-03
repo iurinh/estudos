@@ -79,6 +79,8 @@ Passos:
 
 Dicas extras do curso:
 - Para gerar um icone para cada plataforma, recomenda-se usar o Ionic. Com ele pode-se usar apenas uma imagem e o framework gera o codigo no config.xml
-    - npm install -g ionic
+    - npm install -g ionic@1
+    - Utilize a versao 1 do ionic, para esse exercicio é o suficiente
     - Utilize icon.png e splash.png como nome dos arquivos (de preferencia quadrados e que sejam de boa qualidade)
-    - 
+    - ionic resources
+    - somente ira gerar icones e splashes se a plataforma estiver instalada, se houver apenas android, somente android sera gerado os icones
