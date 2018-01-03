@@ -84,3 +84,7 @@ Dicas extras do curso:
     - Utilize icon.png e splash.png como nome dos arquivos (de preferencia quadrados e que sejam de boa qualidade)
     - ionic resources
     - somente ira gerar icones e splashes se a plataforma estiver instalada, se houver apenas android, somente android sera gerado os icones
+
+- Adicionar plugin:
+    - cordova plugin add <nome do plugin> --save
+    - Se possuir platform browser, vai dar erro em muitos plugins, desinstale e rode novamente, depois instale novamente
