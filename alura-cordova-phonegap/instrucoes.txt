@@ -86,5 +86,6 @@ Dicas extras do curso:
     - somente ira gerar icones e splashes se a plataforma estiver instalada, se houver apenas android, somente android sera gerado os icones
 
 - Adicionar plugin:
+    - https://cordova.apache.org/plugins/
     - cordova plugin add <nome do plugin> --save
     - Se possuir platform browser, vai dar erro em muitos plugins, desinstale e rode novamente, depois instale novamente
