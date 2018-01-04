@@ -89,3 +89,5 @@ Dicas extras do curso:
     - https://cordova.apache.org/plugins/
     - cordova plugin add <nome do plugin> --save
     - Se possuir platform browser, vai dar erro em muitos plugins, desinstale e rode novamente, depois instale novamente
+    - Depois que se comeca a usar os plugins, deve-se aceitar as licencas com "sdkmanager --licences"
+    - Adicione o script cordova.js no index.html
