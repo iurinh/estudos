@@ -91,3 +91,8 @@ Dicas extras do curso:
     - Se possuir platform browser, vai dar erro em muitos plugins, desinstale e rode novamente, depois instale novamente
     - Depois que se comeca a usar os plugins, deve-se aceitar as licencas com "sdkmanager --licences"
     - Adicione o script cordova.js no index.html
+
+- Permitir chamadas ajax http (permitir acesso externo):
+    - cordova plugin add cordova-plugin-whitelist --save
+    - Adicionar no config.xml "<access origin="http://cozinhapp.sergiolopes.org" />"
+
