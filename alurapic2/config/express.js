@@ -6,8 +6,9 @@ var app = express();
 //configurações do Express
 app.use(express.static('./public'));
 
-consign()
-    .include('app/routes')
+consign({cwd: 'app'}) //Current Word Directory
+    .include('api')
+    .then('routes')
     .into(app);
 
 module.exports = app;
