@@ -56,7 +56,7 @@ api.atualizar = function(req, res){
 
     fotos[indice] = foto;
 
-    res.sendStatus(204);
+    res.sendStatus(200);
 
 }
 
