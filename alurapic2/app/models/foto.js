@@ -15,4 +15,4 @@ var schema = mongoose.Schema({
     }
 });
 
-mongoose.model('foto', schema);
+mongoose.model('Foto', schema);
