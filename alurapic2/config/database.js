@@ -18,7 +18,14 @@ module.exports = function(uri){
     process.on('SIGINT', function(){
         mongoose.connection.close(function(){
             console.log('Conexao com MongoDB fechada pelo termino da aplicacao.');
-            process.exit(0);
+            process.exit(0);//indica que o termino ja era esperado;
         });
     })
 }
+
+//ALGUNS COMANDOS NO CLIENT DO MONGODB
+//show dbs
+//use alurapic
+//db.fotos.insert(foto);
+//show collections
+//db.fotos.find()

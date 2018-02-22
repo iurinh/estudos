@@ -9,7 +9,8 @@ app.use(express.static('./public'));
 app.use(bodyParser.json());
 
 consign({cwd: 'app'}) //Current Word Directory
-    .include('api')
+    .include('models')
+    .then('api')
     .then('routes')
     .into(app);
 
