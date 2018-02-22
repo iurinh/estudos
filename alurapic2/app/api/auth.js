@@ -33,7 +33,7 @@ module.exports = function(app) {
 
     }
 
-    api.verificaToken = function(req, res){
+    api.verificaToken = function(req, res, next){
         var token = req.headers['x-access-token'];
         console.log("Verificando token");
 
