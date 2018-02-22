@@ -45,4 +45,19 @@ api.adiciona = function(req, res){
 
 }
 
+api.atualizar = function(req, res){
+    
+    var fotoId = req.params.id;
+    var foto = req.body;
+
+    var indice = fotos.findIndex(function(foto){
+        return foto._id == fotoId;
+    })
+
+    fotos[indice] = foto;
+
+    res.sendStatus(204);
+
+}
+
 module.exports = api;
