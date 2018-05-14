@@ -7,8 +7,12 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  public carros;
 
+  constructor(public navCtrl: NavController) {
+    this.carros = [
+      {nome: 'Brasilia amarela', preco: 2000}
+    ];
   }
 
 }
