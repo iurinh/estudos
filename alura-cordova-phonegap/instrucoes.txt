@@ -67,6 +67,7 @@ Passos:
     - sdkmanager build-tools;25.0.0 (pode ser outra versao)
     - sdkmanager platform-tools
     - sdkmanager system-images;android-24;default;x86_64 (esse comando vc pode alterar a imagem, mas recomendo pegar uma que seja default, para nao dar problema ao criar uma avd)
+    - sdkmanager emulator
     - sdkmanager platforms;android-25 (pode ser outra versao)
     - avdmanager create avd -n emuladorAndroid -k system-images;android-24;default;x86_64 (pode ser outra imagem)
 - No seu projeto com formato WEB:
