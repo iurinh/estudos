@@ -97,3 +97,6 @@ Dicas extras do curso:
     - cordova plugin add cordova-plugin-whitelist --save
     - Adicionar no config.xml "<access origin="http://cozinhapp.sergiolopes.org" />"
 
+- Caso tenha problemas com "CPU acceleration status: HAXM is not installed on this machine"
+    - Vá em "C:\instalacoes\android\extras\intel\Hardware_Accelerated_Execution_Manager"(ou parecido) e execute "intelhaxm-android.exe"
+
