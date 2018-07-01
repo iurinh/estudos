@@ -99,3 +99,6 @@ Dicas extras do curso:
 - Caso tenha problemas com "CPU acceleration status: HAXM is not installed on this machine"
     - Vá em "C:\instalacoes\android\extras\intel\Hardware_Accelerated_Execution_Manager"(ou parecido) e execute "intelhaxm-android.exe"
 
+- Caso tenha problemas de executar o "cordova run android" (por nao encontrar o target do emulador) execute em terminais serparados e na sequencia:
+    - emulator @<nome do emulador>;
+    - cordova run android
