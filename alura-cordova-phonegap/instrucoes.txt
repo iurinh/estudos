@@ -55,7 +55,6 @@ Passos:
 - descompacte os dois arquivos (zip) baixados e adicione variaveis de ambiente. No meu caso as variaveis de ambiente ficaram algo como:
     C:\Program Files\nodejs\;
     %JAVA_HOME%\bin;
-    %ANDROID_HOME%\tools;
     %ANDROID_HOME%\tools\bin;
     %ANDROID_HOME%\emulator;
     %ANDROID_HOME%\gradle-4.2;
