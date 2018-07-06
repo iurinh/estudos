@@ -12,17 +12,21 @@ chute = 0
 
 acertou = chute == numero_secreto
 
-for tentativas in range(1, total_tentativas):
+for tentativas in range(1, total_tentativas+1):
     try:
         chute = input("Digite o numero ({0}/{1}): ".format(tentativas, total_tentativas))
         chute = float(chute);
+
+        if chute < 1 or chute > 99:
+            print("Digite apenas numeros entre 0 e 100")
+            continue
 
         acertou = chute == numero_secreto
         maior = chute > numero_secreto
 
         if acertou:
-            print("Acertou ")
-            rodada = 3;
+            print("Acertou ");
+            break;
         elif maior:
                 print("Seu chute foi maior")
         else:
