@@ -1,3 +1,5 @@
+import random
+
 print("***********************")
 print("Bem vindo ! Adivinhação é o Jogo!")
 print("***********************")
@@ -6,7 +8,7 @@ total_tentativas = 3;
 tentativas = 1
 game_over = total_tentativas == tentativas+1
 
-numero_secreto = 42
+numero_secreto = int(random.random() * 100)
 
 chute = 0
 
@@ -37,3 +39,4 @@ for tentativas in range(1, total_tentativas+1):
 else:
     if not acertou and (tentativas == total_tentativas):
         print("Você não conseguiu - GAME OVER")
+        print("O número era: {}".format(numero_secreto))
