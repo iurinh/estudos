@@ -67,3 +67,6 @@ def jogar():
         if not acertou and (tentativas == total_tentativas):
             print("Você não conseguiu - GAME OVER")
             print("O número era: {}".format(numero_secreto))
+
+if(__name__ == "__main__"):
+    jogar()
