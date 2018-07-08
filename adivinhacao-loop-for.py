@@ -62,7 +62,6 @@ for tentativas in range(1, total_tentativas+1):
     except ValueError:
         print("Digite somente numeros")
         pontos = pontos - 100
-        print("Pontos: {}".format(pontos))
 else:
     if not acertou and (tentativas == total_tentativas):
         print("Você não conseguiu - GAME OVER")
