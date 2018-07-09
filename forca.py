@@ -1,11 +1,39 @@
 import random
 
 def jogar():
+    max_tentativas = 6
+    erros = 0
 
+    abertura()
+    palavra_secreta = carrega_palavra_secreta()
+    letras_acertadas = inicializa_letras_acertadas(palavra_secreta)
+
+    while True:
+        chute = pede_chute()
+
+        if chute in palavra_secreta:
+            marca_chute_correto(chute, letras_acertadas, palavra_secreta)
+        else:
+            erros += 1
+            mostra_msg_erro(erros, max_tentativas)
+
+        if max_tentativas == erros:
+            break
+        if acertou(letras_acertadas):
+            break
+
+    if acertou(letras_acertadas):
+        print("Parabéns!")
+    else:
+        print("GAME OVER")
+
+def abertura():
     print("***********************")
     print("Bem vindo ! Fogo da Forca!")
     print("***********************")
 
+
+def carrega_palavra_secreta():
     palavras = []
     arquivo = open("palavras.txt", "r")
 
@@ -17,40 +45,32 @@ def jogar():
     linha_escolhida = random.randrange(0, len(palavras))
     palavra_secreta = palavras[linha_escolhida].upper()
 
-    letras_acertadads = ["_" for letra in palavra_secreta]
-    max_tentativas = 6
-    erros = 0
+    return palavra_secreta
 
-    def acertou():
-        return "_" not in letras_acertadads
+def inicializa_letras_acertadas(palavra):
+    return ["_" for letra in palavra]
 
-    while True:
-        chute = input("Qual letra?").strip().upper()
+def acertou(letras):
+    return "_" not in letras
 
-        if chute in palavra_secreta:
-            idx = 0
-            for letra in palavra_secreta:
-                if chute == letra:
-                    letras_acertadads[idx] = chute
+def pede_chute():
+    return input("Qual letra?").strip().upper()
 
-                idx += 1
+def marca_chute_correto(chute, letras_acertadas, palavra_secreta):
+    idx = 0
+    for letra in palavra_secreta:
+        if chute == letra:
+            letras_acertadas[idx] = chute
 
-            print("Quantidade de letras encontradas: ", palavra_secreta.count(chute))
-            print(letras_acertadads)
-        else:
-            erros += 1
-            if max_tentativas != erros:
-                print("Ops, você errou! Faltam {} tentativas.".format(max_tentativas - erros))
+        idx += 1
 
-        if max_tentativas == erros:
-            break
-        if acertou():
-            break
+    print("Quantidade de letras encontradas: ", palavra_secreta.count(chute))
+    print(letras_acertadas)
 
-    if acertou():
-        print("Parabéns!")
-    else:
-        print("GAME OVER")
+def mostra_msg_erro(erros, max_tentativas):
+    if max_tentativas != erros:
+        print("Ops, você errou! Faltam {} tentativas.".format(max_tentativas - erros))
 
 if(__name__ == "__main__"):
     jogar()
+
