@@ -1,17 +1,18 @@
-
-
 def jogar():
+
     print("***********************")
     print("Bem vindo ! Fogo da Forca!")
     print("***********************")
 
     palavra_secreta = "banana".upper()
     letras_acertadads = ["_", "_", "_", "_", "_", "_"]
-    enforcou = False
-    acertou = False
+    max_tentativas = 6
     erros = 0
 
-    while not enforcou and not acertou:
+    def acertou():
+        return "_" not in letras_acertadads
+
+    while True:
         chute = input("Qual letra?").strip().upper()
 
         if chute in palavra_secreta:
@@ -26,11 +27,15 @@ def jogar():
             print(letras_acertadads)
         else:
             erros += 1
+            if max_tentativas != erros:
+                print("Ops, você errou! Faltam {} tentativas.".format(max_tentativas - erros))
 
-        enforcou = erros == 6
-        acertou = "_" not in letras_acertadads
+        if max_tentativas == erros:
+            break
+        if acertou():
+            break
 
-    if acertou:
+    if acertou():
         print("Parabéns!")
     else:
         print("GAME OVER")
