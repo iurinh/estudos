@@ -1,0 +1,8 @@
+INDEX VERSION 1.131+/home/iuri/Documentos/alura/estudos-kafka/intelliJ-workspace/.metadata/.plugins/org.eclipse.jdt.core
+3719682611.index
+1404013661.index
+4180177184.index
+3434625766.index
+3589239038.index
+3379969334.index
+1398575775.index

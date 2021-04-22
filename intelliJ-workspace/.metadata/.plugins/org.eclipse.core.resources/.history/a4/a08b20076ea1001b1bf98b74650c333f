@@ -1,0 +1,13 @@
+package br.com.alura.ecommerce;
+
+import org.apache.kafka.clients.producer.KafkaProducer;
+
+public class NewOrderMain {
+
+    public static void main(String[] args) {
+        var producer = KafkaProducer<String, String>();
+
+        producer = KafkaProducer<String, String>();
+    }
+
+}

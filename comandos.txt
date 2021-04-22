@@ -1,0 +1,31 @@
+DENTRO DO DIRETORIO DO KAFKA
+bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/kafka-server-start.sh config/server.properties
+
+CRIAR 1 TOPICO, 1 PARTICAO
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 partitions 1 --topic LOJA_NOVO_PEDIDO
+
+LISTAR OS TOPICOS
+bin/kafka-topics.sh --list -bootstrap-server localhost:9092
+
+DESCREVER OS TOPICOS (detalhes)
+bin/kafka-topics.sh --describe -bootstrap-server localhost:9092
+
+
+PRODUCAO DE MENSAGEM
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic LOJA_NOVO_PEDIDO
+
+CONSUMO DE MENSAGEM CORRENTE
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic LOJA_NOVO_PEDIDO
+
+CONSUMO DE MENSAGEM DESDE O INICIO
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic LOJA_NOVO_PEDIDO --from-beginning
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic ECOMMERCE_NEW_ORDER --from-beginning
+
+ALTERAR QUANTIDADE DE PARTICOES
+bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic ECOMMERCE_NEW_ORDER --partitions 3
+
+MOSTRAR GRUPOS
+bin/kafka-consumer-groups.sh --all-groups --bootstrap-server localhost:9092 --describe
+
+
