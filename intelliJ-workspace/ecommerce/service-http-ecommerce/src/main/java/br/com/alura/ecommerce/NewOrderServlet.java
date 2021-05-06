@@ -30,6 +30,7 @@ public class NewOrderServlet extends HttpServlet {
         emailDispatcher.close();
     }
 
+    //EXEMPLO: http://localhost:8080/new?email=iuri@email.com&amount=150
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         var email = req.getParameter("email");
