@@ -41,14 +41,15 @@ public class BatchSendMessageService {
         }
     }
 
-    private void parse(ConsumerRecord<String, String> record) throws ExecutionException, InterruptedException, SQLException {
+    private void parse(ConsumerRecord<String, Message<String>> record) throws ExecutionException, InterruptedException, SQLException {
         System.out.println("------------------------------------------");
         System.out.println("Processando novo BACTH");
-        System.out.println("Topco: " + record.value());
+        var message = record.value();
+        System.out.println("Topco: " + message.getPayload());
         System.out.println(record.value());
 
         for(User user: getAllUsers()) {
-            userDispatcher.send(record.value(), user.getUuid(), user);
+            userDispatcher.send(message.getPayload(), user.getUuid(), user);
         }
     }
 

@@ -38,12 +38,13 @@ public class CreateUserService {
         }
     }
 
-    private void parse(ConsumerRecord<String, Order> record) throws ExecutionException, InterruptedException, SQLException {
+    private void parse(ConsumerRecord<String, Message<Order>> record) throws ExecutionException, InterruptedException, SQLException {
         System.out.println("------------------------------------------");
         System.out.println("Processando novo usuario");
         System.out.println(record.value());
 
-       Order order = record.value();
+        var message = record.value();
+        Order order = message.getPayload();
 
         if(isNewUser(order.getEmail()))
             insertNewUser(order.getEmail());

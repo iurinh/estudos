@@ -14,15 +14,15 @@ import java.util.regex.Pattern;
 
 public class KafkaService<T> implements Closeable {
 
-    private KafkaConsumer<String, T> consumer;
-    private ConsumerFunction parse;
+    private KafkaConsumer<String, Message<T>> consumer;
+    private ConsumerFunction<T> parse;
 
-    KafkaService(String groupId, String topic, ConsumerFunction parse, Class<T> type, Map<String, String> properties) {
+    KafkaService(String groupId, String topic, ConsumerFunction<T> parse, Class<T> type, Map<String, String> properties) {
         this.parse(groupId, parse, type, properties);
         consumer.subscribe(Collections.singletonList(topic));
     }
 
-    KafkaService(String groupId, Pattern topic, ConsumerFunction parse, Class<T> type, Map<String, String> properties) {
+    KafkaService(String groupId, Pattern topic, ConsumerFunction<T> parse, Class<T> type, Map<String, String> properties) {
         this.parse(groupId, parse, type, properties);
         consumer.subscribe(topic);
     }
@@ -57,7 +57,6 @@ public class KafkaService<T> implements Closeable {
         prop.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         prop.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, UUID.randomUUID().toString());
         prop.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "1");
-        prop.setProperty(GsonDeserializer.TYPE_CONFIG, type.getName());
         prop.putAll(overrideProperties);
 
         return prop;

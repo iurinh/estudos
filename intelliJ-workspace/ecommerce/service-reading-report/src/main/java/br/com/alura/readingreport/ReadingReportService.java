@@ -26,17 +26,16 @@ public class ReadingReportService {
         }
     }
 
-    private void parse(ConsumerRecord<String, User> record) throws ExecutionException, InterruptedException, IOException {
+    private void parse(ConsumerRecord<String, Message<User>> record) throws ExecutionException, InterruptedException, IOException {
         System.out.println("------------------------------------------");
         System.out.println("Processando relatorio para " + record.value());
 
-        var user = record.value();
+        var message = record.value();
+        var user = message.getPayload();
         var target = new File(user.getReportPath());
         IO.copyTo(SOURCE, target);
         IO.append(target, "Criado para " + user.getUuid());
 
         System.out.println("Arquivo criado " + target.getAbsolutePath());
-
-
     }
 }
