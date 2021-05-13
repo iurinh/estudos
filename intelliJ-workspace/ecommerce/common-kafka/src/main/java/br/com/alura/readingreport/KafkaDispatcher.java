@@ -1,14 +1,12 @@
 package br.com.alura.readingreport;
 
-import org.apache.kafka.clients.producer.Callback;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.io.Closeable;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class KafkaDispatcher<T> implements Closeable {
 
@@ -28,6 +26,10 @@ public class KafkaDispatcher<T> implements Closeable {
     }
 
     public void send(String topic, String key, CorrelationId id, T payload) throws ExecutionException, InterruptedException {
+        sendAsync(topic, key, id, payload).get();
+    }
+
+    public  Future<RecordMetadata> sendAsync(String topic, String key, CorrelationId id, T payload) {
         var value = new Message<>(id, payload);
 
         var record = new ProducerRecord<>(topic, key, value);
@@ -40,7 +42,7 @@ public class KafkaDispatcher<T> implements Closeable {
             System.out.println("SUCESSO Enviando " + data.topic() + ":::partition " + data.partition());
         };
 
-        producer.send(record, getCallback()).get();
+        return producer.send(record, getCallback());
     }
 
     private static Callback getCallback() {
