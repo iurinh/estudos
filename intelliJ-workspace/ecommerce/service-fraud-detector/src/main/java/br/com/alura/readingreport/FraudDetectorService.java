@@ -16,13 +16,12 @@ public class FraudDetectorService {
                 FraudDetectorService.class.getSimpleName(),
                 "ECOMMERCE_NEW_ORDER",
                 fraudService::parse,
-                Order.class,
                 new HashMap<String, String>())) {
             service.run();
         }
     }
 
-    private void parse(ConsumerRecord<String, Order> record) throws ExecutionException, InterruptedException {
+    private void parse(ConsumerRecord<String, Message<Order>> record) throws ExecutionException, InterruptedException {
         System.out.println("------------------------------------------");
         System.out.println("Processando");
         System.out.println(record.key());
@@ -37,14 +36,25 @@ public class FraudDetectorService {
             e.printStackTrace();
         }
 
-        Order order = record.value();
+
+        Message<Order> message = record.value();
+        Order order = message.getPayload();
 
         if(isFraud(order)) {
             System.out.println("É uma FRAUDE" + order);
-            orderDispatcher.send("ECOMMERCE_ORDER_REJECTED", order.getEmail(), order);
+            orderDispatcher.send(
+                    "ECOMMERCE_ORDER_REJECTED",
+                    order.getEmail(),
+                    message.getId().continueWith(FraudDetectorService.class.getSimpleName()),
+                    order
+            );
         } else {
             System.out.println("Tranquilo" + order);
-            orderDispatcher.send("ECOMMERCE_ORDER_APPROVED", order.getEmail(), order);
+            orderDispatcher.send(
+                    "ECOMMERCE_ORDER_APPROVED",
+                    order.getEmail(),
+                    message.getId().continueWith(FraudDetectorService.class.getSimpleName()),
+                    order);
         }
     }
 

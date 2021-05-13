@@ -12,13 +12,15 @@ public class EmailService {
                 EmailService.class.getSimpleName(),
                 "ECOMMERCE_SEND_EMAIL",
                 emailService::parse,
-                Email.class,
                 new HashMap<String, String>())){
             service.run();
         }
     }
 
-    private void parse(ConsumerRecord<String, Email> record) {
+    private void parse(ConsumerRecord<String, Message<Email>> record) {
+        Message<Email> message = record.value();
+        Email email = message.getPayload();
+
         System.out.println("------------------------------------------");
         System.out.println("Enviado emails");
         System.out.println(record.key());

@@ -37,10 +37,20 @@ public class NewOrderServlet extends HttpServlet {
         var order = new Order(orderID, amount, email);
 
         try {
-            orderDispatcher.send("ECOMMERCE_NEW_ORDER", email, order);
+            orderDispatcher.send(
+                    "ECOMMERCE_NEW_ORDER",
+                    email,
+                    new CorrelationId(NewOrderServlet.class.getSimpleName()),
+                    order
+            );
 
             var emailCode = new Email("Bem vindo! processando...", "Parabens");
-            emailDispatcher.send("ECOMMERCE_SEND_EMAIL", email, emailCode);
+            emailDispatcher.send(
+                    "ECOMMERCE_SEND_EMAIL",
+                    email,
+                    new CorrelationId(NewOrderServlet.class.getSimpleName()),
+                    emailCode
+            );
 
             System.out.println("Processo de compra finalizado com sucesso.");
             resp.setStatus(HttpServletResponse.SC_OK);
